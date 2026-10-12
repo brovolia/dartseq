@@ -1,0 +1,81 @@
+ERROR ~ Error executing process > 'NFCORE_DARTSEQ:DARTSEQ:BULLSEYE_R_GLM (all_bullseye_sites)'
+
+Caused by:
+  Process `NFCORE_DARTSEQ:DARTSEQ:BULLSEYE_R_GLM (all_bullseye_sites)` terminated with an error exit status (1)
+
+
+Command executed:
+
+  cat > run_bullseye_glm.R << 'EOF'
+  suppressPackageStartupMessages({
+      library(data.table)
+      library(dplyr)
+      library(aod)
+  })
+  
+  source("bullseye_functions.R")
+  
+  cov <- fread("all_bullseye_sites.bullseye.coverage.txt")
+  mut <- fread("all_bullseye_sites.bullseye.mut.txt")
+  observations <- as.data.frame(fread("bullseye_glm_observations.tsv"))
+  
+  if (!"sample" %in% colnames(observations)) {
+      stop("observations must contain a 'sample' column")
+  }
+  
+  # rownames<- only survives on a data.frame - data.table silently drops it,
+  # so observations is converted above before this assignment (Bullseye()
+  # requires rownames(colData) to match the sample columns below).
+  rownames(observations) <- observations$sample
+  
+  # Bullseye() expects data_cov/data_mut with rownames = site ID and one
+  # column per sample (matching rownames(colData)) - GATHER_SITES output
+  # instead keeps chr/start/end/cluster/strand as columns, so build the site
+  # ID from those and drop them before handing the matrices to Bullseye().
+  meta_cols <- c("#chr", "start", "end", "cluster", "strand")
+  site_id <- paste(cov[["#chr"]], cov$start, cov$end, cov$strand, sep = "_")
+  
+  data_cov <- as.data.frame(cov)[, setdiff(colnames(cov), meta_cols), drop = FALSE]
+  data_mut <- as.data.frame(mut)[, setdiff(colnames(mut), meta_cols), drop = FALSE]
+  rownames(data_cov) <- site_id
+  rownames(data_mut) <- site_id
+  
+  result <- Bullseye(
+      data_cov = data_cov,
+      data_mut = data_mut,
+      colData = observations,
+      design = as.formula("~group"),
+      min.cov = 1,
+      return.df.only = TRUE,
+      link = "betabin"
+  )
+  
+  fwrite(as.data.table(result), file = "all_bullseye_sites.bullseye.glm.tsv", sep = "	")
+  EOF
+  
+  Rscript run_bullseye_glm.R
+
+Command exit status:
+  1
+
+Command output:
+  (empty)
+
+Command error:
+  Error in `$<-.data.frame`(`*tmp*`, "n", value = 1) : 
+    replacement has 1 row, data has 0
+  Calls: Bullseye -> $<- -> $<-.data.frame
+  Execution halted
+
+Work dir:
+  /work_ikmb/sukmb662/dartseq/.nf-test/tests/dce75bd14fa329fa75c5279775f4284/work/c4/6ddd9075088a61961e7c8d66079c32
+
+Container:
+  /work_ikmb/sukmb662/test_dartseq/cache/singularity/community.wave.seqera.io-library-r-aod_r-base_r-data.table_r-dplyr_pruned-50e53b1dbf9130ec.img
+
+Tip: you can try to figure out what's wrong by changing to the process work dir and showing the script file named `.command.sh`
+
+ -- Check '/work_ikmb/sukmb662/dartseq/.nf-test/tests/dce75bd14fa329fa75c5279775f4284/meta/nextflow.log' file for details
+ERROR ~ Pipeline failed. Please refer to troubleshooting docs: https://nf-co.re/docs/usage/troubleshooting
+
+ -- Check '/work_ikmb/sukmb662/dartseq/.nf-test/tests/dce75bd14fa329fa75c5279775f4284/meta/nextflow.log' file for details

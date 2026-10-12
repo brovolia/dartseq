@@ -2,40 +2,39 @@ process BULLSEYE_SUMMARIZE_SITES {
     tag "$meta.id"
     label 'process_low'
 
-    container params.bullseye_container ?: null
+    container 'community.wave.seqera.io/library/bullseye:1.0.0--3e5fd1a65e0e10e9'
 
     input:
     tuple val(meta), path(bed_files, stageAs: 'repOnly??/*')
+    val(bullseye_mock)
+    val(bullseye_replicates_min)
+    val(bullseye_min_mut)
 
     output:
     tuple val(meta), path("${prefix}.bed"), emit: bed
-    path "versions.yml", emit: versions
+    tuple val("${task.process}"), val('bullseye'), val("${bullseye_version}"), emit: versions, topic: versions
 
     when:
     task.ext.when == null || task.ext.when
 
     script:
     prefix = task.ext.prefix ?: "${meta.id}.bullseye.sites"
-    if (params.bullseye_mock) {
+    bullseye_version = bullseye_mock ? 'mock' : 'local'
+    if (bullseye_mock) {
         """
         cp ${bed_files[0]} ${prefix}.bed
-
-        cat <<-END_VERSIONS > versions.yml
-        "${task.process}":
-            bullseye: "mock"
-        END_VERSIONS
         """
     } else {
-        def repOnlyArgs = bed_files.collect { bedFile -> "--repOnly ${bedFile}" }.join(' ')
+        // --repOnly is a boolean switch (merge the same edited sample against several
+        // controls without computing coverage/average-editing-rate stats), not a
+        // per-file option - the bed files themselves are positional arguments.
+        def bedFileArgs = bed_files.collect { bedFile -> "${bedFile}" }.join(' ')
         """
-        perl ${params.bullseye_code_dir}/summarize_sites.pl \\
-            --MinRep ${params.bullseye_replicates_min} \\
-            ${repOnlyArgs} > ${prefix}.bed
-
-        cat <<-END_VERSIONS > versions.yml
-        "${task.process}":
-            bullseye: "local"
-        END_VERSIONS
+        perl -S summarize_sites.pl \\
+            --MinRep ${bullseye_replicates_min} \\
+            --mut ${bullseye_min_mut} \\
+            --repOnly \\
+            ${bedFileArgs} > ${prefix}.bed
         """
     }
 }

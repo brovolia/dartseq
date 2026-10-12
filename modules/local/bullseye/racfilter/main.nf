@@ -2,33 +2,30 @@ process BULLSEYE_RACFILTER {
     tag "$meta.id"
     label 'process_low'
 
-    conda "bioconda::bedtools=2.31.1"
-    container params.bullseye_container ?: null
+    container 'community.wave.seqera.io/library/bullseye:1.0.0--3e5fd1a65e0e10e9'
 
     input:
     tuple val(meta), path(bed)
     path(fasta)
+    val(bullseye_mock)
+    val(bullseye_rac_remove_seq)
 
     output:
     tuple val(meta), path("${prefix}.RAC.bed"), emit: bed
-    path "versions.yml", emit: versions
+    tuple val("${task.process}"), val('bullseye'), val("${bullseye_version}"), emit: versions, topic: versions
 
     when:
     task.ext.when == null || task.ext.when
 
     script:
     prefix = task.ext.prefix ?: "${meta.id}.bullseye"
-    if (params.bullseye_mock) {
+    bullseye_version = bullseye_mock ? 'mock' : 'local'
+    if (bullseye_mock) {
         """
         cp ${bed} ${prefix}.RAC.bed
-
-        cat <<-END_VERSIONS > versions.yml
-        "${task.process}":
-            bullseye: "mock"
-        END_VERSIONS
         """
     } else {
-        def keepMotifOnly = params.bullseye_rac_remove_seq ? true : false
+        def keepMotifOnly = bullseye_rac_remove_seq ? true : false
         """
         perl -F'\\t' -ane 'if (/^\\#/){next;} if(\$F[5] =~ /\\+/){ \$F[1] -= 2; } else { \$F[2] += 2; } print join("\\t", @F)' ${bed} \\
             | bedtools getfasta -bedOut -s -fi ${fasta} -bed - > ${prefix}.3nt.sequence.bed
@@ -40,11 +37,6 @@ process BULLSEYE_RACFILTER {
         fi
 
         rm -f ${prefix}.3nt.sequence.bed
-
-        cat <<-END_VERSIONS > versions.yml
-        "${task.process}":
-            bullseye: "local"
-        END_VERSIONS
         """
     }
 }

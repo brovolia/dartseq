@@ -220,52 +220,42 @@ def validatePipelineModeParameters() {
         }
     }
 
-    if (params.run_bullseye && params.skip_alignment) {
-        error("--run_bullseye requires alignment outputs. Please disable --skip_alignment.")
+    if (!params.skip_bullseye && params.skip_alignment) {
+        error("--skip_bullseye false requires alignment outputs. Please disable --skip_alignment.")
     }
 
-    if (params.run_bullseye && !params.bullseye_mock && !params.annotation_reFlat_file && !params.gtf) {
-        error("--run_bullseye requires either --annotation_reFlat_file or --gtf unless --bullseye_mock is enabled")
+    if (!params.skip_bullseye && !params.bullseye_mock && !params.annotation_reFlat_file && !params.gtf) {
+        error("--skip_bullseye false requires either --annotation_reFlat_file or --gtf unless --bullseye_mock is enabled")
     }
 
-    if (params.run_bullseye && !params.bullseye_mock && !params.bullseye_code_dir) {
-        error("--run_bullseye requires --bullseye_code_dir unless --bullseye_mock is enabled")
+    if (!params.skip_bullseye_racfilter && params.skip_bullseye) {
+        error("--skip_bullseye_racfilter false requires --skip_bullseye false")
     }
 
-    if (params.run_bullseye_racfilter && !params.run_bullseye) {
-        error("--run_bullseye_racfilter requires --run_bullseye")
+    // BULLSEYE_ACFILTER (mandatory A-before-edited-C check) always runs whenever Bullseye
+    // does, so --fasta is required unconditionally now - not just for the optional RAC filter.
+    if (!params.skip_bullseye && !params.bullseye_mock && !params.fasta) {
+        error("--skip_bullseye false requires --fasta unless --bullseye_mock is enabled")
     }
 
-    if (params.run_bullseye_racfilter && !params.bullseye_mock && !params.fasta) {
-        error("--run_bullseye_racfilter requires --fasta unless --bullseye_mock is enabled")
+    if (!params.skip_bullseye_gather_sites && params.skip_bullseye) {
+        error("--skip_bullseye_gather_sites false requires --skip_bullseye false")
     }
 
-    if (params.run_bullseye_gather_sites && !params.run_bullseye) {
-        error("--run_bullseye_gather_sites requires --run_bullseye")
+    if (!params.skip_bullseye_gather_sites && !(params.bullseye_gather_score || params.bullseye_gather_coverage || params.bullseye_gather_mutations)) {
+        error("--skip_bullseye_gather_sites false requires at least one of --bullseye_gather_score, --bullseye_gather_coverage, or --bullseye_gather_mutations")
     }
 
-    if (params.run_bullseye_gather_sites && !(params.bullseye_gather_score || params.bullseye_gather_coverage || params.bullseye_gather_mutations)) {
-        error("--run_bullseye_gather_sites requires at least one of --bullseye_gather_score, --bullseye_gather_coverage, or --bullseye_gather_mutations")
+    if (!params.skip_bullseye_glm && params.skip_bullseye_gather_sites) {
+        error("--skip_bullseye_glm false requires --skip_bullseye_gather_sites false")
     }
 
-    if (params.run_bullseye_glm && !params.run_bullseye_gather_sites) {
-        error("--run_bullseye_glm requires --run_bullseye_gather_sites")
+    if (!params.skip_bullseye_glm && !params.bullseye_glm_mock && !params.bullseye_functions_r_file) {
+        error("--skip_bullseye_glm false requires --bullseye_functions_r_file unless --bullseye_glm_mock is enabled")
     }
 
-    if (params.run_bullseye_glm && !params.bullseye_glm_mock && !params.bullseye_functions_r_file) {
-        error("--run_bullseye_glm requires --bullseye_functions_r_file unless --bullseye_glm_mock is enabled")
-    }
-
-    if (params.run_bullseye_glm && !params.bullseye_glm_observations) {
-        error("--run_bullseye_glm requires --bullseye_glm_observations")
-    }
-
-    if (params.run_rustqc && params.skip_alignment) {
-        error("--run_rustqc requires alignment outputs. Please disable --skip_alignment.")
-    }
-
-    if (params.run_rustqc && !params.rustqc_mock && !params.rustqc_cmd) {
-        error("--run_rustqc requires --rustqc_cmd unless --rustqc_mock is enabled")
+    if (!params.skip_bullseye_glm && !params.bullseye_glm_observations) {
+        error("--skip_bullseye_glm false requires --bullseye_glm_observations")
     }
 }
 

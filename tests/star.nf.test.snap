@@ -1,16 +1,13 @@
 {
-    "STAR alignment with RustQC": {
+    "STAR alignment": {
         "content": [
-            30,
+            18,
             {
                 "FASTP": {
                     "fastp": "1.1.0"
                 },
                 "FASTQC": {
                     "fastqc": "0.12.1"
-                },
-                "RUSTQC": {
-                    "rustqc": "mock"
                 },
                 "SAMTOOLS_INDEX": {
                     "samtools": "1.23.1"
@@ -202,19 +199,6 @@
                 "multiqc/multiqc_report.html",
                 "pipeline_info",
                 "pipeline_info/nf_core_dartseq_software_mqc_versions.yml",
-                "rustqc",
-                "rustqc/A03",
-                "rustqc/A03/A03.rustqc.json",
-                "rustqc/A03/A03.rustqc.tsv",
-                "rustqc/A04",
-                "rustqc/A04/A04.rustqc.json",
-                "rustqc/A04/A04.rustqc.tsv",
-                "rustqc/C03",
-                "rustqc/C03/C03.rustqc.json",
-                "rustqc/C03/C03.rustqc.tsv",
-                "rustqc/E01",
-                "rustqc/E01/E01.rustqc.json",
-                "rustqc/E01/E01.rustqc.tsv",
                 "star",
                 "star/A03",
                 "star/A03/A03.Aligned.sortedByCoord.out.bam",
@@ -301,14 +285,6 @@
                 "multiqc_star.txt:md5,f0a3b5ad6defbc1835a4158449c3375d",
                 "star_alignment_plot.txt:md5,5d1f33f196fbff82cb91141b51a7b602",
                 "star_summary_table.txt:md5,5276d0bf6e4b924a595d5c77bb7a2b2b",
-                "A03.rustqc.json:md5,1033803d8e22c64af440ffb41e4f699d",
-                "A03.rustqc.tsv:md5,9b257de5f0b77ce189bd57bab3c76b8b",
-                "A04.rustqc.json:md5,9398955ed1590673d649d4add7b04080",
-                "A04.rustqc.tsv:md5,9b257de5f0b77ce189bd57bab3c76b8b",
-                "C03.rustqc.json:md5,cac8cdd376ca68240842014870394665",
-                "C03.rustqc.tsv:md5,9b257de5f0b77ce189bd57bab3c76b8b",
-                "E01.rustqc.json:md5,b88e8a5fedebde1887e4c154fe8d9118",
-                "E01.rustqc.tsv:md5,9b257de5f0b77ce189bd57bab3c76b8b",
                 "A03.SJ.out.tab:md5,fb52212dd3b68dadd76c78b8280c0ef0",
                 "A04.SJ.out.tab:md5,17897a7286d91953366573b470537d83",
                 "C03.SJ.out.tab:md5,a910282ddf870f365873f6ade0d4b522",
@@ -330,10 +306,10 @@
                 "transcriptInfo.tab:md5,0c7fcb2282ec5d5dde590170dc0ccad2"
             ]
         ],
+        "timestamp": "2026-08-27T15:19:55.463658402",
         "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.10.0"
-        },
-        "timestamp": "2026-05-20T16:14:14.716175011"
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.4"
+        }
     }
 }

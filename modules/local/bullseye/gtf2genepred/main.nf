@@ -2,14 +2,14 @@ process BULLSEYE_GTF2GENEPRED {
     tag "$meta.id"
     label 'process_medium'
 
-    container params.bullseye_container ?: null
+    container 'community.wave.seqera.io/library/bullseye:1.0.0--3e5fd1a65e0e10e9'
 
     input:
     tuple val(meta), path(gtf)
 
     output:
     path "*.refFlat", emit: refFlat
-    path "versions.yml", emit: versions
+    tuple val("${task.process}"), val('bullseye'), val('local'), emit: versions, topic: versions
 
     when:
     task.ext.when == null || task.ext.when
@@ -18,13 +18,8 @@ process BULLSEYE_GTF2GENEPRED {
     def prefix = task.ext.prefix ?: "${gtf.simpleName}"
 
     """
-    perl ${params.bullseye_code_dir}/gtf2genepred.pl \
+    perl -S gtf2genepred.pl \
         --gtf ${gtf} \
         --out ${prefix}.refFlat
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        bullseye: "local"
-    END_VERSIONS
     """
 }

@@ -1,8 +1,23 @@
 {
     "Bullseye with contrasts file": {
         "content": [
-            50,
+            32,
             {
+                "BULLSEYE_ACFILTER": {
+                    "bullseye": "local"
+                },
+                "BULLSEYE_FIND_EDIT_SITES": {
+                    "bullseye": "local"
+                },
+                "BULLSEYE_PARSEBAM": {
+                    "bullseye": "local"
+                },
+                "BULLSEYE_QUANTIFY_SITES": {
+                    "bullseye": "local"
+                },
+                "BULLSEYE_SUMMARIZE_SITES": {
+                    "bullseye": "local"
+                },
                 "FASTP": {
                     "fastp": "1.1.0"
                 },
@@ -32,6 +47,9 @@
                 "bullseye/A03/A03.matrix.gz",
                 "bullseye/A03/A03.matrix.gz.tbi",
                 "bullseye/A04",
+                "bullseye/A04/A04.bullseye.AC.bed",
+                "bullseye/A04/A04.bullseye.AC.counts.tsv",
+                "bullseye/A04/A04.bullseye.all_sites.sequence.bed",
                 "bullseye/A04/A04.bullseye.quantified.bed",
                 "bullseye/A04/A04.bullseye.sites.bed",
                 "bullseye/A04/A04.matrix.gz",
@@ -42,6 +60,9 @@
                 "bullseye/C03/C03.matrix.gz",
                 "bullseye/C03/C03.matrix.gz.tbi",
                 "bullseye/E01",
+                "bullseye/E01/E01.bullseye.AC.bed",
+                "bullseye/E01/E01.bullseye.AC.counts.tsv",
+                "bullseye/E01/E01.bullseye.all_sites.sequence.bed",
                 "bullseye/E01/E01.bullseye.quantified.bed",
                 "bullseye/E01/E01.bullseye.sites.bed",
                 "bullseye/E01/E01.matrix.gz",
@@ -268,19 +289,25 @@
             ],
             [
                 "A03.matrix.gz:md5,c0649d31524a6448f48380db121961ba",
-                "A03.matrix.gz.tbi:md5,78786c0f7ebe5b0e0643051afa16e72d",
-                "A04.bullseye.quantified.bed:md5,d41d8cd98f00b204e9800998ecf8427e",
-                "A04.bullseye.sites.bed:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "A03.matrix.gz.tbi:md5,5275e76b289a0635836b4ee4ef78bb43",
+                "A04.bullseye.AC.bed:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "A04.bullseye.AC.counts.tsv:md5,102d6683066700835dd3f4ac7a20ac3c",
+                "A04.bullseye.all_sites.sequence.bed:md5,494c533fa13623c6ce40978684a50e42",
+                "A04.bullseye.quantified.bed:md5,f7d763aed7da1057287b4f98b5a95eb8",
+                "A04.bullseye.sites.bed:md5,794daf6c8c0edab7ee9f416eef8c15fc",
                 "A04.matrix.gz:md5,8197b3489419ed7732421c3fa1e5107e",
-                "A04.matrix.gz.tbi:md5,d70e20fc9c581341385a8cb248833bcf",
+                "A04.matrix.gz.tbi:md5,c2cc953cb45b46e726a95514b42ec1e8",
                 "A04.vs.A03.test_contrast.bed:md5,ae8358b2982e6ed815bf48176658780f",
                 "A04.vs.C03.test_contrast.bed:md5,4d4fa0247d9f830b8c9e0efad2355333",
                 "C03.matrix.gz:md5,ef8a165135adc0f678ffdf7b84aa65af",
-                "C03.matrix.gz.tbi:md5,6e17645dec53ed32ed77ff60cf7bb125",
+                "C03.matrix.gz.tbi:md5,27d41cff696428419715d3852007f636",
+                "E01.bullseye.AC.bed:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "E01.bullseye.AC.counts.tsv:md5,a48e6717937e6362c7ad3e0f436500f9",
+                "E01.bullseye.all_sites.sequence.bed:md5,d41d8cd98f00b204e9800998ecf8427e",
                 "E01.bullseye.quantified.bed:md5,d41d8cd98f00b204e9800998ecf8427e",
                 "E01.bullseye.sites.bed:md5,d41d8cd98f00b204e9800998ecf8427e",
                 "E01.matrix.gz:md5,34c85d79f6289451f5ce72bad2871170",
-                "E01.matrix.gz.tbi:md5,6f66fa088bc407971e5531540712743d",
+                "E01.matrix.gz.tbi:md5,c0011de454e6a986539325333e2c26f1",
                 "E01.vs.A03.test_contrast.bed:md5,2693e50913b709c4d9ca30033f746695",
                 "E01.vs.C03.test_contrast.bed:md5,2693e50913b709c4d9ca30033f746695",
                 "A03_R1.fastp.fastq.gz:md5,82e59ca4d67c58943abc1a4b8438d43f",
@@ -343,16 +370,31 @@
                 "transcriptInfo.tab:md5,0c7fcb2282ec5d5dde590170dc0ccad2"
             ]
         ],
+        "timestamp": "2026-08-27T15:12:12.965631008",
         "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.10.0"
-        },
-        "timestamp": "2026-05-20T16:00:04.063862597"
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.4"
+        }
     },
     "Bullseye on STAR alignment output": {
         "content": [
-            50,
+            32,
             {
+                "BULLSEYE_ACFILTER": {
+                    "bullseye": "local"
+                },
+                "BULLSEYE_FIND_EDIT_SITES": {
+                    "bullseye": "local"
+                },
+                "BULLSEYE_PARSEBAM": {
+                    "bullseye": "local"
+                },
+                "BULLSEYE_QUANTIFY_SITES": {
+                    "bullseye": "local"
+                },
+                "BULLSEYE_SUMMARIZE_SITES": {
+                    "bullseye": "local"
+                },
                 "FASTP": {
                     "fastp": "1.1.0"
                 },
@@ -382,6 +424,9 @@
                 "bullseye/A03/A03.matrix.gz",
                 "bullseye/A03/A03.matrix.gz.tbi",
                 "bullseye/A04",
+                "bullseye/A04/A04.bullseye.AC.bed",
+                "bullseye/A04/A04.bullseye.AC.counts.tsv",
+                "bullseye/A04/A04.bullseye.all_sites.sequence.bed",
                 "bullseye/A04/A04.bullseye.quantified.bed",
                 "bullseye/A04/A04.bullseye.sites.bed",
                 "bullseye/A04/A04.matrix.gz",
@@ -392,6 +437,9 @@
                 "bullseye/C03/C03.matrix.gz",
                 "bullseye/C03/C03.matrix.gz.tbi",
                 "bullseye/E01",
+                "bullseye/E01/E01.bullseye.AC.bed",
+                "bullseye/E01/E01.bullseye.AC.counts.tsv",
+                "bullseye/E01/E01.bullseye.all_sites.sequence.bed",
                 "bullseye/E01/E01.bullseye.quantified.bed",
                 "bullseye/E01/E01.bullseye.sites.bed",
                 "bullseye/E01/E01.matrix.gz",
@@ -618,19 +666,25 @@
             ],
             [
                 "A03.matrix.gz:md5,c0649d31524a6448f48380db121961ba",
-                "A03.matrix.gz.tbi:md5,78786c0f7ebe5b0e0643051afa16e72d",
-                "A04.bullseye.quantified.bed:md5,d41d8cd98f00b204e9800998ecf8427e",
-                "A04.bullseye.sites.bed:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "A03.matrix.gz.tbi:md5,5275e76b289a0635836b4ee4ef78bb43",
+                "A04.bullseye.AC.bed:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "A04.bullseye.AC.counts.tsv:md5,102d6683066700835dd3f4ac7a20ac3c",
+                "A04.bullseye.all_sites.sequence.bed:md5,494c533fa13623c6ce40978684a50e42",
+                "A04.bullseye.quantified.bed:md5,f7d763aed7da1057287b4f98b5a95eb8",
+                "A04.bullseye.sites.bed:md5,794daf6c8c0edab7ee9f416eef8c15fc",
                 "A04.matrix.gz:md5,8197b3489419ed7732421c3fa1e5107e",
-                "A04.matrix.gz.tbi:md5,d70e20fc9c581341385a8cb248833bcf",
+                "A04.matrix.gz.tbi:md5,c2cc953cb45b46e726a95514b42ec1e8",
                 "A04.vs.A03.default.bed:md5,ae8358b2982e6ed815bf48176658780f",
                 "A04.vs.C03.default.bed:md5,4d4fa0247d9f830b8c9e0efad2355333",
                 "C03.matrix.gz:md5,ef8a165135adc0f678ffdf7b84aa65af",
-                "C03.matrix.gz.tbi:md5,6e17645dec53ed32ed77ff60cf7bb125",
+                "C03.matrix.gz.tbi:md5,27d41cff696428419715d3852007f636",
+                "E01.bullseye.AC.bed:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "E01.bullseye.AC.counts.tsv:md5,a48e6717937e6362c7ad3e0f436500f9",
+                "E01.bullseye.all_sites.sequence.bed:md5,d41d8cd98f00b204e9800998ecf8427e",
                 "E01.bullseye.quantified.bed:md5,d41d8cd98f00b204e9800998ecf8427e",
                 "E01.bullseye.sites.bed:md5,d41d8cd98f00b204e9800998ecf8427e",
                 "E01.matrix.gz:md5,34c85d79f6289451f5ce72bad2871170",
-                "E01.matrix.gz.tbi:md5,6f66fa088bc407971e5531540712743d",
+                "E01.matrix.gz.tbi:md5,c0011de454e6a986539325333e2c26f1",
                 "E01.vs.A03.default.bed:md5,2693e50913b709c4d9ca30033f746695",
                 "E01.vs.C03.default.bed:md5,2693e50913b709c4d9ca30033f746695",
                 "A03_R1.fastp.fastq.gz:md5,82e59ca4d67c58943abc1a4b8438d43f",
@@ -693,10 +747,10 @@
                 "transcriptInfo.tab:md5,0c7fcb2282ec5d5dde590170dc0ccad2"
             ]
         ],
+        "timestamp": "2026-08-27T15:05:15.275309836",
         "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.10.0"
-        },
-        "timestamp": "2026-05-20T15:57:48.136319305"
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.4"
+        }
     }
 }

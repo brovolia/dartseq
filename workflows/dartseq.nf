@@ -14,12 +14,12 @@ include { HISAT2_BUILD           } from '../modules/nf-core/hisat2/build/main'
 include { SAMTOOLS_SORT          } from '../modules/nf-core/samtools/sort/main'
 include { SAMTOOLS_INDEX         } from '../modules/nf-core/samtools/index/main'
 include { MULTIQC                } from '../modules/nf-core/multiqc/main'
-include { RUSTQC                 } from '../modules/local/rustqc/main'
 include { BULLSEYE_PARSEBAM      } from '../modules/local/bullseye/parsebam/main'
 include { BULLSEYE_GTF2GENEPRED  } from '../modules/local/bullseye/gtf2genepred/main'
 include { BULLSEYE_FIND_EDIT_SITES } from '../modules/local/bullseye/findeditsites/main'
 include { BULLSEYE_SUMMARIZE_SITES } from '../modules/local/bullseye/summarizesites/main'
 include { BULLSEYE_QUANTIFY_SITES } from '../modules/local/bullseye/quantifysites/main'
+include { BULLSEYE_ACFILTER      } from '../modules/local/bullseye/acfilter/main'
 include { BULLSEYE_RACFILTER     } from '../modules/local/bullseye/racfilter/main'
 include { BULLSEYE_GATHER_SITES  } from '../modules/local/bullseye/gathersites/main'
 include { BULLSEYE_R_GLM         } from '../modules/local/bullseye/rglm/main'
@@ -115,10 +115,16 @@ workflow DARTSEQ {
                 params.star_ignore_sjdbgtf
             )
             ch_multiqc_files = ch_multiqc_files.mix(STAR_ALIGN.out.log_final.collect{it[1]})
-            // SortedByCoordinate → bam_sorted_aligned; fallback chain for other SAMtype args
+            // conf/modules.config pins STAR_ALIGN's ext.args to
+            // `--outSAMtype BAM SortedByCoordinate`, so bam_sorted_aligned is the
+            // only channel that's ever actually populated for this pipeline. Do
+            // NOT .mix() it with .bam/.bam_sorted as a "fallback chain": the
+            // module's `bam` emit glob ('*d.out.bam') also matches
+            // "*.Aligned.sortedByCoord.out.bam", so the same file gets captured on
+            // both channels - mixing them double-counted every sample, cascading
+            // into a 2x/4x/16x task-count multiplication all the way down through
+            // Bullseye's edited x control pairing.
             ch_sorted_bam = STAR_ALIGN.out.bam_sorted_aligned
-                .mix(STAR_ALIGN.out.bam_sorted)
-                .mix(STAR_ALIGN.out.bam)
 
         } else if (params.aligner == 'hisat2') {
             if (!params.hisat2_index && !params.fasta) {
@@ -172,7 +178,7 @@ workflow DARTSEQ {
             ch_sorted_bam = SAMTOOLS_SORT.out.bam
         }
 
-        // Index sorted BAMs (required by RustQC / Bullseye)
+        // Index sorted BAMs (required by Bullseye)
         SAMTOOLS_INDEX ( ch_sorted_bam )
         ch_aligned_bam = ch_sorted_bam.join( SAMTOOLS_INDEX.out.index )
     }
@@ -180,7 +186,7 @@ workflow DARTSEQ {
     //
     // Optional Bullseye steps
     //
-    if (params.run_bullseye) {
+    if (!params.skip_bullseye) {
         // Stage annotation into Bullseye tasks so it is always visible inside containers.
         ch_bullseye_annotation = channel.empty()
         if (params.bullseye_mock) {
@@ -190,10 +196,11 @@ workflow DARTSEQ {
         } else {
             BULLSEYE_GTF2GENEPRED ( ch_gtf )
             ch_bullseye_annotation = BULLSEYE_GTF2GENEPRED.out.refFlat
-            ch_versions = ch_versions.mix(BULLSEYE_GTF2GENEPRED.out.versions.first())
+            // versions now flow via topic: versions (see BULLSEYE_GTF2GENEPRED main.nf) -
+            // no manual mix needed, and .out.versions is now a tuple, not a Path.
         }
 
-        BULLSEYE_PARSEBAM ( ch_aligned_bam )
+        BULLSEYE_PARSEBAM ( ch_aligned_bam, params.bullseye_mock, params.bullseye_parse_min_coverage )
 
         // Two modes: contrast-based (explicit comparisons) or group-based (all edited vs all control)
         if (params.bullseye_contrasts) {
@@ -318,14 +325,24 @@ workflow DARTSEQ {
                 [ edited_meta + [ contrast_params: contrast ], edited_matrix, edited_tbi, control_meta, control_matrix, control_tbi, annotation_file ]
             }
 
-        BULLSEYE_FIND_EDIT_SITES ( ch_bullseye_pairs_with_annotation )
+        BULLSEYE_FIND_EDIT_SITES (
+            ch_bullseye_pairs_with_annotation,
+            params.bullseye_mock,
+            params.bullseye_min_edit,
+            params.bullseye_max_edit,
+            params.bullseye_edit_fold_threshold,
+            params.bullseye_min_edit_sites,
+            params.bullseye_edit_type,
+            params.bullseye_edited_min_coverage,
+            params.bullseye_control_min_coverage
+        )
 
         ch_bullseye_grouped_sites = BULLSEYE_FIND_EDIT_SITES.out.bed
             .map { meta, bed -> [ meta.id, meta, bed ] }
             .groupTuple()
             .map { _sample_id, metas, beds -> [ metas[0], beds ] }
 
-        BULLSEYE_SUMMARIZE_SITES ( ch_bullseye_grouped_sites )
+        BULLSEYE_SUMMARIZE_SITES ( ch_bullseye_grouped_sites, params.bullseye_mock, params.bullseye_replicates_min, params.bullseye_min_mut )
 
         ch_bullseye_edited_keyed = ch_bullseye_edited
             .map { meta, matrix, tbi -> [ meta.id, meta, matrix, tbi ] }
@@ -339,42 +356,59 @@ workflow DARTSEQ {
                 [ edited_meta, matrix, tbi, bed ]
             }
 
-        BULLSEYE_QUANTIFY_SITES ( ch_bullseye_quantify_input )
+        BULLSEYE_QUANTIFY_SITES ( ch_bullseye_quantify_input, params.bullseye_mock, params.bullseye_quant_coverage )
 
         ch_bullseye_sites_for_post = BULLSEYE_QUANTIFY_SITES.out.bed
 
-        if (params.run_bullseye_racfilter) {
-            ch_bullseye_fasta = channel.value(file(params.fasta, checkIfExists: true))
-            BULLSEYE_RACFILTER ( ch_bullseye_sites_for_post, ch_bullseye_fasta )
+        // Always run ACFILTER: it produces AC.counts.tsv/all_sites*.bed regardless
+        // (useful diagnostics either way), but whether the strict AC-only subset is
+        // what actually propagates downstream is controlled by skip_bullseye_acfilter -
+        // it's not yet confirmed whether APOBEC1-YTH only edits in that canonical
+        // A-before-C context, so callers can opt to keep non-canonical sites too.
+        ch_bullseye_fasta = channel.value(file(params.fasta, checkIfExists: true))
+        BULLSEYE_ACFILTER ( ch_bullseye_sites_for_post, ch_bullseye_fasta, params.bullseye_mock )
+        ch_bullseye_sites_for_post = params.skip_bullseye_acfilter
+            ? BULLSEYE_ACFILTER.out.all_sites_bed
+            : BULLSEYE_ACFILTER.out.bed
+
+        if (!params.skip_bullseye_racfilter) {
+            BULLSEYE_RACFILTER ( ch_bullseye_sites_for_post, ch_bullseye_fasta, params.bullseye_mock, params.bullseye_rac_remove_seq )
             ch_bullseye_sites_for_post = BULLSEYE_RACFILTER.out.bed
         }
 
-        if (params.run_bullseye_gather_sites) {
+        if (!params.skip_bullseye_gather_sites) {
             ch_bullseye_gather_input = ch_bullseye_sites_for_post
                 .map { _meta, bed -> [ [ id: 'all_bullseye_sites' ], bed ] }
                 .groupTuple()
                 .map { meta, beds -> [ meta, beds ] }
 
-            BULLSEYE_GATHER_SITES ( ch_bullseye_gather_input )
+            BULLSEYE_GATHER_SITES (
+                ch_bullseye_gather_input,
+                params.bullseye_mock,
+                params.bullseye_gather_score,
+                params.bullseye_gather_coverage,
+                params.bullseye_gather_mutations
+            )
 
-            if (params.run_bullseye_glm) {
+            if (!params.skip_bullseye_glm) {
                 ch_bullseye_glm_observations = channel.value(file(params.bullseye_glm_observations, checkIfExists: true))
+                ch_bullseye_glm_functions_r_file = channel.value(file(params.bullseye_functions_r_file, checkIfExists: true))
 
                 ch_bullseye_glm_input = BULLSEYE_GATHER_SITES.out.coverage
                     .join(BULLSEYE_GATHER_SITES.out.mut)
                     .combine(ch_bullseye_glm_observations)
                     .map { meta, cov, mut, observations -> [ meta, cov, mut, observations ] }
 
-                BULLSEYE_R_GLM ( ch_bullseye_glm_input )
+                BULLSEYE_R_GLM (
+                    ch_bullseye_glm_input,
+                    params.bullseye_glm_mock,
+                    ch_bullseye_glm_functions_r_file,
+                    params.bullseye_glm_design,
+                    params.bullseye_glm_min_cov,
+                    params.bullseye_glm_link
+                )
             }
         }
-    }
-
-    //
-    // Optional RustQC step
-    //
-    if (params.run_rustqc) {
-        RUSTQC ( ch_aligned_bam )
     }
 
     //

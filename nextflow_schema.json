@@ -242,27 +242,19 @@
                     "description": "Skip alignment stage (useful for smoke tests).",
                     "default": false
                 },
-                "run_bullseye": {
+                "skip_bullseye": {
                     "type": "boolean",
-                    "description": "Run Bullseye downstream stage on aligned BAM files.",
-                    "default": false
+                    "description": "Skip Bullseye downstream stage on aligned BAM files.",
+                    "default": true
                 },
                 "bullseye_mock": {
                     "type": "boolean",
                     "description": "Run Bullseye in mock mode without invoking Perl scripts.",
                     "default": false
                 },
-                "bullseye_code_dir": {
-                    "type": "string",
-                    "description": "Path to Bullseye Code directory containing parseBAM.pl, Find_edit_site.pl, summarize_sites.pl and quant/quantify_sites.pl."
-                },
-                "bullseye_container": {
-                    "type": "string",
-                    "description": "Optional container image URI or local SIF for Bullseye local modules."
-                },
                 "annotation_reFlat_file": {
                     "type": "string",
-                    "description": "Annotation file for Find_edit_site.pl (refFlat or compatible).",
+                    "description": "Annotation file for Find_edit_sites.pl (refFlat or compatible).",
                     "format": "file-path"
                 },
                 "bullseye_control_group": {
@@ -273,7 +265,8 @@
                 "bullseye_contrasts": {
                     "type": "string",
                     "description": "Path to CSV file defining specific Bullseye comparisons with per-contrast parameters. When provided, overrides bullseye_control_group. See assets/contrasts.csv for format.",
-                    "format": "file-path"
+                    "format": "file-path",
+                    "schema": "assets/schema_contrasts.json"
                 },
                 "bullseye_parse_min_coverage": {
                     "type": "integer",
@@ -320,14 +313,26 @@
                     "description": "Minimum replicate count used by summarize_sites.pl.",
                     "default": 1
                 },
+                "bullseye_min_mut": {
+                    "type": "integer",
+                    "description": "Minimum number of mutations (edits) required at a site, summed across replicates, to keep it in summarize_sites.pl (--mut).",
+                    "default": 2
+                },
                 "bullseye_quant_coverage": {
                     "type": "integer",
                     "description": "Coverage threshold for quantify_sites.pl.",
                     "default": 10
                 },
-                "run_bullseye_racfilter": {
+                "skip_bullseye_racfilter": {
                     "type": "boolean",
-                    "description": "Run RAC motif filtering on Bullseye quantified BED files.",
+                    "description": "Skip RAC motif filtering on Bullseye quantified BED files.",
+                    "help_text": "This only controls the strict canonical RAC motif requirement (a purine two bases upstream of the edited C). It has no effect on skip_bullseye_acfilter, which separately controls the AC motif check immediately upstream of it.",
+                    "default": true
+                },
+                "skip_bullseye_acfilter": {
+                    "type": "boolean",
+                    "description": "Propagate every candidate edited site downstream instead of only the strict canonical AC-motif subset.",
+                    "help_text": "BULLSEYE_ACFILTER always runs and always produces its AC.counts.tsv/all_sites*.bed diagnostics either way. This only controls which of its outputs (AC.bed, the strict subset, or all_sites.bed, every candidate site) propagates to downstream steps (RAC filtering, gathering, GLM). It's not yet confirmed whether APOBEC1-YTH edits occur only in the canonical A-before-C context, so set this if you want to keep non-canonical sites downstream.",
                     "default": false
                 },
                 "bullseye_rac_remove_seq": {
@@ -335,10 +340,10 @@
                     "description": "If true, remove RAC sequence column from RAC-filtered output BED.",
                     "default": true
                 },
-                "run_bullseye_gather_sites": {
+                "skip_bullseye_gather_sites": {
                     "type": "boolean",
-                    "description": "Aggregate Bullseye site-level outputs across samples using gather_sites.pl.",
-                    "default": false
+                    "description": "Skip aggregating Bullseye site-level outputs across samples using gather_scores.pl.",
+                    "default": true
                 },
                 "bullseye_gather_score": {
                     "type": "boolean",
@@ -355,25 +360,21 @@
                     "description": "Request mutation-count matrix output from gather_sites.pl.",
                     "default": true
                 },
-                "run_bullseye_glm": {
+                "skip_bullseye_glm": {
                     "type": "boolean",
-                    "description": "Run Bullseye R GLM helper on gathered coverage and mutation tables.",
-                    "default": false
+                    "description": "Skip Bullseye R GLM helper on gathered coverage and mutation tables.",
+                    "default": true
                 },
                 "bullseye_glm_mock": {
                     "type": "boolean",
                     "description": "Run Bullseye GLM module in mock mode.",
                     "default": false
                 },
-                "bullseye_r_container": {
-                    "type": "string",
-                    "description": "Optional container image URI for Bullseye R GLM module."
-                },
                 "bullseye_functions_r_file": {
                     "type": "string",
                     "description": "Path to functions.R used by the Bullseye GLM helper.",
                     "format": "file-path",
-                    "default": "/opt/bullseye/example_data/markdown/functions.R"
+                    "default": "assets/bullseye_functions.R"
                 },
                 "bullseye_glm_observations": {
                     "type": "string",
@@ -395,24 +396,6 @@
                     "type": "integer",
                     "description": "Minimum coverage threshold passed to Bullseye GLM helper.",
                     "default": 10
-                },
-                "run_rustqc": {
-                    "type": "boolean",
-                    "description": "Run RustQC on aligned BAM files.",
-                    "default": false
-                },
-                "rustqc_cmd": {
-                    "type": "string",
-                    "description": "Command template used to run RustQC. Supports placeholders {bam} and {prefix}; if omitted, the module appends '<bam> <prefix>'. Command must create '{prefix}.rustqc.tsv'."
-                },
-                "rustqc_container": {
-                    "type": "string",
-                    "description": "Container image URI or local SIF path used for the RUSTQC process."
-                },
-                "rustqc_mock": {
-                    "type": "boolean",
-                    "description": "Emit mock RustQC outputs instead of executing RustQC (for testing).",
-                    "default": false
                 },
                 "star_index": {
                     "type": "string",

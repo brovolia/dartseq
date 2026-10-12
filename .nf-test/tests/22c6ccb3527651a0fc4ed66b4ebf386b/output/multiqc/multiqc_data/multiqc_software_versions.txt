@@ -1,0 +1,12 @@
+Sample	bullseye	fastp	fastqc	samtools	gawk	star	nf-core/dartseq	Nextflow
+BULLSEYE_ACFILTER	local							
+BULLSEYE_FIND_EDIT_SITES	local							
+BULLSEYE_PARSEBAM	local							
+BULLSEYE_QUANTIFY_SITES	local							
+BULLSEYE_SUMMARIZE_SITES	local							
+FastQC			0.12.1					
+SAMTOOLS_INDEX				1.23.1				
+STAR_ALIGN				1.21	5.1.0	2.7.11b		
+STAR_GENOMEGENERATE				1.21	5.1.0	2.7.11b		
+Workflow							v1.0.0dev	26.04.4
+fastp		1.1.0						

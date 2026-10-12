@@ -2,42 +2,39 @@ process BULLSEYE_PARSEBAM {
     tag "$meta.id"
     label 'process_medium'
 
-    conda "bioconda::samtools=1.22.1 bioconda::htslib=1.22.1"
-    container params.bullseye_container ?: null
+    container 'community.wave.seqera.io/library/bullseye:1.0.0--3e5fd1a65e0e10e9'
 
     input:
     tuple val(meta), path(bam), path(bai)
+    val(bullseye_mock)
+    val(bullseye_parse_min_coverage)
 
     output:
     tuple val(meta), path("${prefix}.matrix.gz"), path("${prefix}.matrix.gz.tbi"), emit: matrix
-    path "versions.yml", emit: versions
+    tuple val("${task.process}"), val('bullseye'), val("${bullseye_version}"), emit: versions, topic: versions
 
     when:
     task.ext.when == null || task.ext.when
 
     script:
     prefix = task.ext.prefix ?: "${meta.id}"
+    bullseye_version = bullseye_mock ? 'mock' : 'local'
     def removeDuplicates = task.ext.removeDuplicates ?: false
-    if (params.bullseye_mock) {
+    if (bullseye_mock) {
         """
         cat > ${prefix}.matrix.gz << 'EOF'
         chr1\t100\t+\t10\t2\tA\tG
         EOF
 
         touch ${prefix}.matrix.gz.tbi
-
-        cat <<-END_VERSIONS > versions.yml
-        "${task.process}":
-            bullseye: "mock"
-        END_VERSIONS
         """
     } else {
         """
-        perl ${params.bullseye_code_dir}/parseBAM.pl \\
+        perl -S parseBAM.pl \\
             --input ${bam} \\
             --output ${prefix}.matrix \\
             --cpu ${task.cpus} \\
-            --minCoverage ${params.bullseye_parse_min_coverage} \\
+            --minCoverage ${bullseye_parse_min_coverage} \\
             ${removeDuplicates ? '--removeDuplicates' : ''}
 
         # parseBAM may emit either <prefix>.matrix or <prefix>.matrix.gz depending on mode/version.
@@ -51,11 +48,6 @@ process BULLSEYE_PARSEBAM {
         if [[ ! -s ${prefix}.matrix.gz.tbi ]]; then
             tabix -f -s 1 -b 2 -e 2 ${prefix}.matrix.gz
         fi
-
-        cat <<-END_VERSIONS > versions.yml
-        "${task.process}":
-            bullseye: "local"
-        END_VERSIONS
         """
     }
 }

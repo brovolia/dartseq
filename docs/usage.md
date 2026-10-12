@@ -6,7 +6,7 @@
 
 ## Introduction
 
-This pipeline supports RNA editing focused processing with Bullseye and RustQC steps.
+This pipeline supports RNA editing focused processing with Bullseye steps.
 For Bullseye runs, ensure that the annotation file matches the reference used for alignment.
 For STAR-based alignment with pre-built indices, use `--star_ignore_sjdbgtf` when the index already encodes splice junction annotation.
 
@@ -77,8 +77,9 @@ If you wish to repeatedly use the same parameters for multiple runs, rather than
 
 Pipeline settings can be provided in a `yaml` or `json` file via `-params-file <file>`.
 
-> [!WARNING]
-> Do not use `-c <file>` to specify parameters as this will result in errors. Custom config files specified with `-c` must only be used for [tuning process resource specifications](https://nf-co.re/docs/usage/configuration#tuning-workflow-resources), other infrastructural tweaks (such as output directories), or module arguments (args).
+:::warning
+Do not use `-c <file>` to specify parameters as this will result in errors. Custom config files specified with `-c` must only be used for [tuning process resource specifications](https://nf-co.re/docs/usage/configuration#tuning-workflow-resources), other infrastructural tweaks (such as output directories), or module arguments (args).
+:::
 
 The above pipeline run specified with a params file in yaml format:
 
@@ -155,11 +156,55 @@ Provide the contrasts file via the `--bullseye_contrasts` parameter:
 nextflow run nf-core/dartseq \
   --input samplesheet.csv \
   --bullseye_contrasts contrasts.csv \
-  --run_bullseye \
+  --skip_bullseye false \
   ...
 ```
 
 The `group` column in your samplesheet must match the group names used in the contrasts file.
+
+## Bullseye GLM
+
+After site gathering (`--skip_bullseye_gather_sites false`; skipped by default), the pipeline can fit a generalized linear model across the gathered coverage/mutation matrices to test for differential editing between groups. This step is controlled by `--skip_bullseye_glm` (also skipped by default) and requires `--skip_bullseye_gather_sites false` to have produced the coverage and mutation matrices it reads.
+
+### Observations file
+
+Provide sample metadata via `--bullseye_glm_observations`, a TSV/CSV file with one row per sample and at least:
+
+| Column   | Required | Description                                                                 |
+| -------- | -------- | ---------------------------------------------------------------------------- |
+| `sample` | Yes      | Must exactly match a sample column in the gathered coverage/mutation matrices |
+
+Add any further columns needed by your `--bullseye_glm_design` formula (e.g. a `group` column for `~group`). The sample names in the gathered matrices reflect whatever filtering ran immediately before gathering (e.g. `<sample>.bullseye.RAC` if RAC filtering was applied, `<sample>.bullseye.all_sites` if both RAC and AC filtering were skipped) - check the header of `bullseye/all_bullseye_sites/*.bullseye.coverage.txt` to get the exact names to use.
+
+```tsv
+sample	group
+sample1.bullseye.RAC	dart
+sample2.bullseye.RAC	dart
+sample3.bullseye.RAC	control
+sample4.bullseye.RAC	control
+```
+
+### Design and link parameters
+
+- `--bullseye_glm_design` (default `~group`): a one-sided R formula naming the column in the observations file to test. That column is converted to a factor internally, so it does not need to be pre-factored.
+- `--bullseye_glm_link` (default `betabin`): the GLM family - `betabin` (beta-binomial, recommended for most editing data), `bin` (binomial), `quasibinomial`, or `betareg`.
+- `--bullseye_glm_min_cov` (default `10`): sites with coverage below this threshold (per sample) are zeroed out before fitting.
+
+The design's grouping column needs at least two levels with residual degrees of freedom left over once fit (e.g. comparing a single group against itself, or too few samples per level, yields `NA` p-values rather than an error - this is expected model behaviour, not a pipeline failure).
+
+### Usage
+
+```bash
+nextflow run nf-core/dartseq \
+  --input samplesheet.csv \
+  --skip_bullseye false \
+  --skip_bullseye_gather_sites false \
+  --skip_bullseye_glm false \
+  --bullseye_glm_observations observations.tsv \
+  --bullseye_glm_design '~group' \
+  --bullseye_glm_link betabin \
+  ...
+```
 
 ### Updating the pipeline
 
@@ -179,13 +224,15 @@ This version number will be logged in reports when you run the pipeline, so that
 
 To further assist in reproducibility, you can use share and reuse [parameter files](#running-the-pipeline) to repeat pipeline runs with the same settings without having to write out a command with every single parameter.
 
-> [!TIP]
-> If you wish to share such profile (such as upload as supplementary material for academic publications), make sure to NOT include cluster specific paths to files, nor institutional specific profiles.
+:::tip
+If you wish to share such profile (such as upload as supplementary material for academic publications), make sure to NOT include cluster specific paths to files, nor institutional specific profiles.
+:::
 
 ## Core Nextflow arguments
 
-> [!NOTE]
-> These options are part of Nextflow and use a _single_ hyphen (pipeline parameters use a double-hyphen)
+:::note
+These options are part of Nextflow and use a _single_ hyphen (pipeline parameters use a double-hyphen)
+:::
 
 ### `-profile`
 
@@ -193,8 +240,9 @@ Use this parameter to choose a configuration profile. Profiles can give configur
 
 Several generic profiles are bundled with the pipeline which instruct the pipeline to use software packaged using different methods (Docker, Singularity, Podman, Shifter, Charliecloud, Apptainer, Conda) - see below.
 
-> [!IMPORTANT]
-> We highly recommend the use of Docker or Singularity containers for full pipeline reproducibility, however when this is not possible, Conda is also supported.
+:::important
+We highly recommend the use of Docker or Singularity containers for full pipeline reproducibility, however when this is not possible, Conda is also supported.
+:::
 
 The pipeline also dynamically loads configurations from [https://github.com/nf-core/configs](https://github.com/nf-core/configs) when it runs, making multiple config profiles for various institutional clusters available at run time. For more information and to check if your system is supported, please see the [nf-core/configs documentation](https://github.com/nf-core/configs#documentation).
 

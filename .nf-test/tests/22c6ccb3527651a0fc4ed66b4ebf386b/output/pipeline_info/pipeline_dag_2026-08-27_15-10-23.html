@@ -1,0 +1,269 @@
+<!--
+  ~ Copyright 2013-2026, Seqera Labs
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<html>
+<head>
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+</head>
+<body>
+<pre class="mermaid" style="text-align: center;">
+%%{
+  init: {
+    'theme': 'base',
+    'themeVariables': {
+      'primaryColor': '#B6ECE2',
+      'primaryTextColor': '#160F26',
+      'primaryBorderColor': '#065647',
+      'lineColor': '#545555',
+      'clusterBkg': '#BABCBD22',
+      'clusterBorder': '#DDDEDE',
+      'fontFamily': 'arial'
+    }
+  }
+}%%
+flowchart TB
+    subgraph " "
+    v0["channel.empty"]
+    v2["channel.fromList"]
+    v7["channel.empty"]
+    v8["channel.empty"]
+    v9["channel.empty"]
+    v11["channel.empty"]
+    v20["discard_trimmed_pass"]
+    v21["save_trimmed_fail"]
+    v22["save_merged"]
+    v33["channel.empty"]
+    v35["ch_gtf"]
+    v36["ch_fasta"]
+    v41["star_ignore_sjdbgtf"]
+    v65["channel.empty"]
+    v67["bullseye_mock"]
+    v68["bullseye_parse_min_coverage"]
+    v71["channel.fromPath"]
+    v88["ch_bullseye_annotation"]
+    v91["bullseye_mock"]
+    v92["bullseye_min_edit"]
+    v93["bullseye_max_edit"]
+    v94["bullseye_edit_fold_threshold"]
+    v95["bullseye_min_edit_sites"]
+    v96["bullseye_edit_type"]
+    v97["bullseye_edited_min_coverage"]
+    v98["bullseye_control_min_coverage"]
+    v104["bullseye_mock"]
+    v105["bullseye_replicates_min"]
+    v106["bullseye_min_mut"]
+    v113["bullseye_mock"]
+    v114["bullseye_quant_coverage"]
+    v117["ch_bullseye_fasta"]
+    v118["bullseye_mock"]
+    v124[" "]
+    v134["channel.of"]
+    v138["channel.fromPath"]
+    v139["channel.empty"]
+    v140["channel.empty"]
+    v141["ch_workflow_summary"]
+    v145["ch_methods_description"]
+    v152["replace_names"]
+    v153["sample_names"]
+    end
+    subgraph " "
+    v1["versions"]
+    v10["ch_aligned_bam"]
+    v12["ch_gtf"]
+    v14[" "]
+    v24[" "]
+    v25[" "]
+    v26[" "]
+    v34["ch_sorted_bam"]
+    v38[" "]
+    v39[" "]
+    v40[" "]
+    v43[" "]
+    v44[" "]
+    v45[" "]
+    v46[" "]
+    v47[" "]
+    v48[" "]
+    v49[" "]
+    v50[" "]
+    v51[" "]
+    v52[" "]
+    v53[" "]
+    v54[" "]
+    v55[" "]
+    v56[" "]
+    v57[" "]
+    v58[" "]
+    v59[" "]
+    v63[" "]
+    v66["ch_bullseye_annotation"]
+    v70[" "]
+    v76[" "]
+    v100[" "]
+    v108[" "]
+    v116[" "]
+    v120[" "]
+    v121[" "]
+    v122[" "]
+    v123["ch_bullseye_sites_for_post"]
+    v155[" "]
+    v156[" "]
+    v157[" "]
+    v160[" "]
+    end
+    subgraph "NFCORE_DARTSEQ [NFCORE_DARTSEQ]"
+    subgraph "NFCORE_DARTSEQ:DARTSEQ [DARTSEQ]"
+    v13(["FASTQC"])
+    v23(["FASTP"])
+    v37(["STAR_GENOMEGENERATE"])
+    v42(["STAR_ALIGN"])
+    v62(["SAMTOOLS_INDEX"])
+    v69(["BULLSEYE_PARSEBAM"])
+    v99(["BULLSEYE_FIND_EDIT_SITES"])
+    v107(["BULLSEYE_SUMMARIZE_SITES"])
+    v115(["BULLSEYE_QUANTIFY_SITES"])
+    v119(["BULLSEYE_ACFILTER"])
+    v154(["MULTIQC"])
+    v15(( ))
+    v19(( ))
+    v64(( ))
+    v72(( ))
+    v101(( ))
+    v149(( ))
+    v150(( ))
+    v151(( ))
+    v158(( ))
+    end
+    end
+    subgraph "PIPELINE_INITIALISATION [PIPELINE_INITIALISATION]"
+    v3(( ))
+    end
+    subgraph "PIPELINE_COMPLETION [PIPELINE_COMPLETION]"
+    v159(( ))
+    end
+    v0 --> v1
+    v2 --> v3
+    v7 --> v15
+    v8 --> v15
+    v9 --> v10
+    v11 --> v12
+    v3 --> v13
+    v13 --> v14
+    v13 --> v15
+    v20 --> v23
+    v21 --> v23
+    v22 --> v23
+    v19 --> v23
+    v23 --> v42
+    v23 --> v26
+    v23 --> v25
+    v23 --> v24
+    v23 --> v15
+    v33 --> v34
+    v35 --> v37
+    v35 --> v42
+    v36 --> v37
+    v37 --> v42
+    v37 --> v40
+    v37 --> v39
+    v37 --> v38
+    v41 --> v42
+    v42 --> v59
+    v42 --> v58
+    v42 --> v57
+    v42 --> v56
+    v42 --> v55
+    v42 --> v54
+    v42 --> v53
+    v42 --> v62
+    v42 --> v52
+    v42 --> v51
+    v42 --> v50
+    v42 --> v49
+    v42 --> v48
+    v42 --> v47
+    v42 --> v46
+    v42 --> v45
+    v42 --> v44
+    v42 --> v43
+    v42 --> v15
+    v42 --> v64
+    v62 --> v63
+    v62 --> v64
+    v65 --> v66
+    v67 --> v69
+    v68 --> v69
+    v64 --> v69
+    v69 --> v70
+    v69 --> v72
+    v71 --> v72
+    v72 --> v76
+    v88 --> v72
+    v91 --> v99
+    v92 --> v99
+    v93 --> v99
+    v94 --> v99
+    v95 --> v99
+    v96 --> v99
+    v97 --> v99
+    v98 --> v99
+    v72 --> v99
+    v99 --> v100
+    v99 --> v101
+    v104 --> v107
+    v105 --> v107
+    v106 --> v107
+    v101 --> v107
+    v107 --> v108
+    v107 --> v72
+    v113 --> v115
+    v114 --> v115
+    v72 --> v115
+    v115 --> v119
+    v115 --> v116
+    v117 --> v119
+    v118 --> v119
+    v119 --> v123
+    v119 --> v122
+    v119 --> v121
+    v119 --> v120
+    v124 --> v15
+    v134 --> v15
+    v138 --> v149
+    v139 --> v150
+    v140 --> v151
+    v141 --> v15
+    v145 --> v15
+    v152 --> v154
+    v153 --> v154
+    v15 --> v154
+    v149 --> v154
+    v150 --> v154
+    v151 --> v154
+    v154 --> v157
+    v154 --> v156
+    v154 --> v155
+    v154 --> v158
+    v159 --> v160
+    v3 --> v19
+    v158 --> v159
+
+</pre>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true, maxTextSize: Number.MAX_SAFE_INTEGER, maxEdges: Number.MAX_SAFE_INTEGER });
+</script>
+</body>
+</html>

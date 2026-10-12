@@ -1,0 +1,258 @@
+Aug-27 15:15:49.595 [main] DEBUG nextflow.cli.Launcher - $> nextflow -quiet -log /work_ikmb/sukmb662/dartseq/.nf-test/tests/5054581062ca7b963668a12ef5309ee5/meta/nextflow.log run /work_ikmb/sukmb662/dartseq/tests/../main.nf -c /work_ikmb/sukmb662/dartseq/nextflow.config -c /work_ikmb/sukmb662/dartseq/tests/nextflow.config -params-file /work_ikmb/sukmb662/dartseq/.nf-test/tests/5054581062ca7b963668a12ef5309ee5/meta/params.json -ansi-log false -profile test,singularity -with-trace /work_ikmb/sukmb662/dartseq/.nf-test/tests/5054581062ca7b963668a12ef5309ee5/meta/trace.csv -w /work_ikmb/sukmb662/dartseq/.nf-test/tests/5054581062ca7b963668a12ef5309ee5/work
+Aug-27 15:15:49.661 [main] INFO  nextflow.cli.CmdRun - N E X T F L O W  ~  version 26.04.4
+Aug-27 15:15:49.678 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; embedded=false; plugins-dir=/zfshome/sukmb662/.nextflow/plugins; core-plugins: nf-amazon@3.9.2,nf-azure@1.22.6,nf-cloudcache@0.6.0,nf-codecommit@0.5.3,nf-console@1.3.0,nf-google@1.27.3,nf-k8s@1.5.4,nf-seqera@0.21.0,nf-tower@1.28.1,nf-wave@1.21.0
+Aug-27 15:15:49.696 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+Aug-27 15:15:49.697 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+Aug-27 15:15:49.699 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.14.1 in 'deployment' mode
+Aug-27 15:15:49.710 [main] DEBUG nextflow.util.RetryConfig - Missing nextflow session - using default retry config
+Aug-27 15:15:49.893 [main] DEBUG nextflow.plugin.PluginUpdater - Using plugin repository: HttpPluginRepository [registry]; url=https://registry.nextflow.io/api
+Aug-27 15:15:49.898 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
+Aug-27 15:15:49.937 [main] DEBUG nextflow.config.ConfigBuilder - Found config base: /work_ikmb/sukmb662/dartseq/nextflow.config
+Aug-27 15:15:49.940 [main] DEBUG nextflow.config.ConfigBuilder - User config file: /work_ikmb/sukmb662/dartseq/nextflow.config
+Aug-27 15:15:49.941 [main] DEBUG nextflow.config.ConfigBuilder - User config file: /work_ikmb/sukmb662/dartseq/tests/nextflow.config
+Aug-27 15:15:49.942 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /work_ikmb/sukmb662/dartseq/nextflow.config
+Aug-27 15:15:49.943 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /work_ikmb/sukmb662/dartseq/nextflow.config
+Aug-27 15:15:49.943 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /work_ikmb/sukmb662/dartseq/tests/nextflow.config
+Aug-27 15:15:49.947 [main] DEBUG nextflow.config.ConfigParserFactory - Using config parser v2
+Aug-27 15:15:49.960 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `test,singularity`
+Aug-27 15:15:51.147 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `test,singularity`
+Aug-27 15:15:51.519 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `test,singularity`
+Aug-27 15:15:51.530 [main] DEBUG nextflow.config.ConfigBuilder - Available config profiles: [debug, conda, mamba, docker, arm64, emulate_amd64, singularity, podman, shifter, charliecloud, apptainer, wave, gpu, test, test_full, test_star, test_hisat2, test_bullseye, test_bullseye_contrasts, test_bullseye_postprocess, test_bullseye_glm, test_bullseye_real, abims, adcra, alice, alliance_canada, apollo, arcc, aws_tower, awsbatch, azurebatch, bi, bigpurple, bih, binac2, biohpc_gen, biowulf, bluebear, cambridge, cannon, cbe, ccga_dx, ccga_cau, ceci_dragon2, ceci_nic5, cedars, ceres, cfc, cfc_dev, cheaha, computerome, create, crg, crick, cropdiversityhpc, crukmi, csiro_petrichor, czbiohub_aws, daisybio, denbi_qbic, dkfz, dirac, ebc, eddie, ebi_codon, ebi_codon_slurm, einstein, embl_hd, engaging, ethz_euler, eva, eva_grace, fgcz, fred_hutch, fsu_draco, fub_curta, genotoul, genouest, giga, gis, googlebatch, hasta, hazel, hki_genie, hypatia, humantechnopole, icr_alma, ifb_core, imb, imperial, incliva, ipop_up, iris, janelia, jax, jex, unsw_katana, ku_sund_danhead, kaust, kelvin2, ki_luria, leicester, lovelace, lrz_cm4, lugh, m3c, maestro, mahuika, mana, marjorie, marvin, mccleary, mcw_rcc, medair, mjolnir_globe, mpcdf, mpcdf_viper, mssm, munin, nci_gadi, nu_genomics, nygc, nyu_hpc, oist, palmetto, pasteur, pawsey_setonix, pdc_kth, phoenix, psmn, purdue_bell, purdue_gautschi, purdue_negishi, qmul_apocrita, rki, rosalind, rosalind_uge, roslin, sage, sahmri, sanger, ilifu, seadragon, seattlechildrens, seawulf, seg_globe, self_hosted_runner, shu_bmrc, stjude, tes, tigem, tubingen_apg, tufts, tuos_stanage, ucd_sonic, ucl_cscluster, ucl_myriad, uct_hpc, uge, unc_lccc, unc_longleaf, unibe_ibu, unity, uod_hpc, uppmax, utd_juno, uw_hyak_pedslabs, uzh, uzl_omics, vai, verily_workbench, vsc_calcua, vsc_kul_uhasselt, vsc_ugent, wehi, xanadu, york_viking]
+Aug-27 15:15:51.571 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins declared=[nf-schema@2.5.1]
+Aug-27 15:15:51.571 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
+Aug-27 15:15:51.571 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins resolved requirement=[nf-schema@2.5.1]
+Aug-27 15:15:51.572 [main] DEBUG nextflow.plugin.PluginUpdater - Installing plugin nf-schema version: 2.5.1
+Aug-27 15:15:51.597 [main] INFO  org.pf4j.AbstractPluginManager - Plugin 'nf-schema@2.5.1' resolved
+Aug-27 15:15:51.598 [main] INFO  org.pf4j.AbstractPluginManager - Start plugin 'nf-schema@2.5.1'
+Aug-27 15:15:51.602 [main] DEBUG nextflow.plugin.BasePlugin - Plugin started nf-schema@2.5.1
+Aug-27 15:15:51.607 [main] DEBUG n.secret.LocalSecretsProvider - Secrets store: /zfshome/sukmb662/.nextflow/secrets/store.json
+Aug-27 15:15:51.609 [main] DEBUG nextflow.secret.SecretsLoader - Discovered secrets providers: [nextflow.secret.LocalSecretsProvider@5e98032e] - activable => nextflow.secret.LocalSecretsProvider@5e98032e
+Aug-27 15:15:51.622 [main] INFO  nextflow.cli.CmdRun - Launching `/work_ikmb/sukmb662/dartseq/tests/../main.nf` [mad_mestorf] - revision: dab8d7ab31
+Aug-27 15:15:51.624 [main] ERROR org.pf4j.AbstractExtensionFinder - Different class loaders: 'org.pf4j.PluginClassLoader@4fbaa7f5' (E) and 'jdk.internal.loader.ClassLoaders$AppClassLoader@5ffd2b27' (EP)
+Aug-27 15:15:51.645 [main] WARN  nextflow.config.ConfigValidator - Unrecognized config option 'validation.defaultIgnoreParams'
+Aug-27 15:15:51.645 [main] WARN  nextflow.config.ConfigValidator - Unrecognized config option 'validation.monochromeLogs'
+Aug-27 15:15:51.683 [main] DEBUG nextflow.Session - Session UUID: 7d26b153-4f23-478e-8925-40c28d560f66
+Aug-27 15:15:51.683 [main] DEBUG nextflow.Session - Run name: mad_mestorf
+Aug-27 15:15:51.684 [main] DEBUG nextflow.Session - Executor pool size: 64
+Aug-27 15:15:51.689 [main] DEBUG nextflow.file.FilePorter - File porter settings maxRetries=3; maxTransfers=50; pollTimeout=null
+Aug-27 15:15:51.693 [main] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'FileTransfer' minSize=10; maxSize=192; workQueue=LinkedBlockingQueue[-1]; allowCoreThreadTimeout=false
+Aug-27 15:15:51.722 [main] DEBUG nextflow.cli.CmdRun - 
+  Version: 26.04.4 build 12445
+  Created: 17-06-2026 16:30 UTC (18:30 CEST)
+  System: Linux 4.18.0-372.9.1.el8.x86_64
+  Runtime: Groovy 4.0.31 on OpenJDK 64-Bit Server VM 17.0.10+7
+  Encoding: UTF-8 (UTF-8)
+  Process: 1751230@caucluster2 [172.24.120.11]
+  CPUs: 64 - Mem: 503.7 GB (333.9 GB) - Swap: 91.5 GB (91.5 GB)
+Aug-27 15:15:51.751 [main] DEBUG nextflow.Session - Work-dir: /work_ikmb/sukmb662/dartseq/.nf-test/tests/5054581062ca7b963668a12ef5309ee5/work [fhgfs]
+Aug-27 15:15:51.752 [main] DEBUG nextflow.Session - Script base path does not exist or is not a directory: /work_ikmb/sukmb662/dartseq/bin
+Aug-27 15:15:51.759 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
+Aug-27 15:15:51.767 [main] DEBUG nextflow.Session - Observer factory (v2): LinObserverFactory
+Aug-27 15:15:51.769 [main] DEBUG nextflow.Session - Observer factory (v2): DefaultObserverFactory
+Aug-27 15:15:51.780 [main] DEBUG nextflow.Session - Observer factory (v2): ValidationObserverFactory
+Aug-27 15:15:51.800 [main] DEBUG nextflow.cache.CacheFactory - Using Nextflow cache factory: nextflow.cache.DefaultCacheFactory
+Aug-27 15:15:51.808 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 65; maxThreads: 1000
+Aug-27 15:15:51.961 [main] DEBUG nextflow.Session - Session start
+Aug-27 15:15:51.968 [main] DEBUG nextflow.trace.TraceFileObserver - Workflow started -- trace file: /work_ikmb/sukmb662/dartseq/.nf-test/tests/5054581062ca7b963668a12ef5309ee5/meta/trace.csv
+Aug-27 15:15:51.970 [main] DEBUG nextflow.script.ScriptLoaderFactory - Using script parser v2
+Aug-27 15:15:54.573 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+Aug-27 15:15:54.861 [main] DEBUG nextflow.script.IncludeDef - Loading included plugin extensions with names: [paramsSummaryMap:paramsSummaryMap]; plugin Id: nf-schema
+Aug-27 15:15:54.874 [main] DEBUG n.validation.config.ValidationConfig - Set `validation.monochromeLogs` to true due to the ANSI log settings.
+Aug-27 15:15:54.875 [main] DEBUG n.validation.config.ValidationConfig - Added the following parameters to the ignored parameters: [genomes]
+Aug-27 15:15:54.902 [main] DEBUG nextflow.script.IncludeDef - Loading included plugin extensions with names: [paramsSummaryLog:paramsSummaryLog]; plugin Id: nf-schema
+Aug-27 15:15:54.902 [main] DEBUG nextflow.script.IncludeDef - Loading included plugin extensions with names: [validateParameters:validateParameters]; plugin Id: nf-schema
+Aug-27 15:15:54.903 [main] DEBUG nextflow.script.IncludeDef - Loading included plugin extensions with names: [paramsHelp:paramsHelp]; plugin Id: nf-schema
+Aug-27 15:15:54.904 [main] DEBUG nextflow.script.IncludeDef - Loading included plugin extensions with names: [paramsSummaryMap:paramsSummaryMap]; plugin Id: nf-schema
+Aug-27 15:15:54.905 [main] DEBUG nextflow.script.IncludeDef - Loading included plugin extensions with names: [samplesheetToList:samplesheetToList]; plugin Id: nf-schema
+Aug-27 15:15:54.916 [main] DEBUG nextflow.script.IncludeDef - Loading included plugin extensions with names: [paramsSummaryMap:paramsSummaryMap]; plugin Id: nf-schema
+Aug-27 15:15:54.916 [main] DEBUG nextflow.script.IncludeDef - Loading included plugin extensions with names: [samplesheetToList:samplesheetToList]; plugin Id: nf-schema
+Aug-27 15:15:55.014 [main] INFO  nextflow.Nextflow - 
+-[2m----------------------------------------------------[0m-
+                                        [0;32m,--.[0;30m/[0;32m,-.[0m
+[0;34m        ___     __   __   __   ___     [0;32m/,-._.--~'[0m
+[0;34m  |\ | |__  __ /  ` /  \ |__) |__         [0;33m}  {[0m
+[0;34m  | \| |       \__, \__/ |  \ |___     [0;32m\`-._,-`-,[0m
+                                        [0;32m`._,._,'[0m
+[0;35m  nf-core/dartseq 1.0.0dev[0m
+-[2m----------------------------------------------------[0m-
+
+Aug-27 15:15:55.052 [main] INFO  nextflow.Nextflow - Input/output options
+  input                     : https://raw.githubusercontent.com/nf-core/test-datasets/dartseq/data/dartseq/samplesheet_4samples.csv
+  outdir                    : /work_ikmb/sukmb662/dartseq/.nf-test/tests/5054581062ca7b963668a12ef5309ee5/output
+
+Reference genome options
+  genome                    : R64-1-1
+
+Institutional config options
+  config_profile_name       : nf-test
+  config_profile_description: Minimal test profile for nf-test
+
+Generic options
+  trace_report_suffix       : 2026-08-27_15-15-51
+  skip_alignment            : true
+  bullseye_functions_r_file : /work_ikmb/sukmb662/dartseq/assets/bullseye_functions.R
+  test_root                 : /work_ikmb/sukmb662/test_dartseq
+
+Core Nextflow options
+  runName                   : mad_mestorf
+  containerEngine           : singularity
+  launchDir                 : /work_ikmb/sukmb662/dartseq/.nf-test/tests/5054581062ca7b963668a12ef5309ee5
+  workDir                   : /work_ikmb/sukmb662/dartseq/.nf-test/tests/5054581062ca7b963668a12ef5309ee5/work
+  projectDir                : /work_ikmb/sukmb662/dartseq
+  userName                  : sukmb662
+  profile                   : test,singularity
+  configFiles               : /work_ikmb/sukmb662/dartseq/nextflow.config, /work_ikmb/sukmb662/dartseq/nextflow.config, /work_ikmb/sukmb662/dartseq/tests/nextflow.config
+
+!! Only displaying parameters that differ from the pipeline defaults !!
+------------------------------------------------------
+Aug-27 15:15:55.052 [main] INFO  nextflow.Nextflow - 
+* The nf-core framework
+    https://doi.org/10.1038/s41587-020-0439-x
+
+* Software dependencies
+    https://github.com/nf-core/dartseq/blob/master/CITATIONS.md
+
+Aug-27 15:15:55.058 [main] DEBUG n.v.parameters.ParameterValidator - Starting parameters validation
+Aug-27 15:15:55.289 [main] DEBUG n.v.v.evaluators.SchemaEvaluator - Started validating /nf-core/test-datasets/dartseq/data/dartseq/samplesheet_4samples.csv
+Aug-27 15:15:56.733 [main] DEBUG n.v.v.evaluators.SchemaEvaluator - Validation of file 'https://raw.githubusercontent.com/nf-core/test-datasets/dartseq/data/dartseq/samplesheet_4samples.csv' passed!
+Aug-27 15:15:56.847 [main] DEBUG nextflow.file.FileHelper - Detected required plugin 'nf-amazon'
+Aug-27 15:15:56.848 [main] DEBUG nextflow.plugin.PluginUpdater - Installing plugin nf-amazon version: 3.9.2
+Aug-27 15:15:57.244 [main] INFO  org.pf4j.AbstractPluginManager - Plugin 'nf-amazon@3.9.2' resolved
+Aug-27 15:15:57.244 [main] INFO  org.pf4j.AbstractPluginManager - Start plugin 'nf-amazon@3.9.2'
+Aug-27 15:15:57.264 [main] DEBUG nextflow.plugin.BasePlugin - Plugin started nf-amazon@3.9.2
+Aug-27 15:15:57.276 [main] DEBUG nextflow.file.FileHelper - > Added 'S3FileSystemProvider' to list of installed providers [s3]
+Aug-27 15:15:57.276 [main] DEBUG nextflow.file.FileHelper - Started plugin 'nf-amazon' required to handle file: s3://ngi-igenomes/igenomes/
+Aug-27 15:15:57.283 [main] DEBUG nextflow.file.FileHelper - Creating a file system instance for provider: S3FileSystemProvider; config=[client:[anonymous:true]]
+Aug-27 15:15:57.292 [main] DEBUG nextflow.cloud.aws.config.AwsConfig - AWS S3 config properties: {max_error_retry=5}
+Aug-27 15:15:58.054 [main] DEBUG nextflow.cloud.aws.nio.S3Client - Unable to fetch caller account - (Service: S3, Status Code: 307, Request ID: 19WDW532CK8S6C01, Extended Request ID: vBhsLKsdz6Aa2S/wmpayfb7PxmEcqcvJ48t9Gl2MCEfcw9p/7idHQbYKqID0BYBNDyY8Jnp2mPQ=) (SDK Attempt Count: 1) 
+Aug-27 15:15:58.773 [main] WARN  n.v.logging.ValidationLogger - The following invalid input values have been detected:
+
+* --modules_testdata_base_path: https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/
+
+
+Aug-27 15:15:58.775 [main] DEBUG n.v.parameters.ParameterValidator - Finishing parameters validation
+Aug-27 15:16:00.274 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:process_medium` matches labels `process_medium` for process with name NFCORE_DARTSEQ:DARTSEQ:FASTQC
+Aug-27 15:16:00.276 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withName:FASTQC` matches process NFCORE_DARTSEQ:DARTSEQ:FASTQC
+Aug-27 15:16:00.279 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Aug-27 15:16:00.279 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Aug-27 15:16:00.285 [main] DEBUG nextflow.executor.Executor - [warm up] executor > local
+Aug-27 15:16:00.290 [main] DEBUG n.processor.LocalPollingMonitor - Creating local task monitor for executor 'local' > cpus=64; memory=503.7 GB; capacity=64; pollInterval=100ms; dumpInterval=5m
+Aug-27 15:16:00.291 [main] DEBUG n.processor.TaskPollingMonitor - >>> barrier register (monitor: local)
+Aug-27 15:16:00.315 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'NFCORE_DARTSEQ:DARTSEQ:FASTQC': maxForks=0; fair=false; array=0
+Aug-27 15:16:00.350 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:process_medium` matches labels `process_medium` for process with name NFCORE_DARTSEQ:DARTSEQ:FASTP
+Aug-27 15:16:00.352 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Aug-27 15:16:00.352 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Aug-27 15:16:00.353 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'NFCORE_DARTSEQ:DARTSEQ:FASTP': maxForks=0; fair=false; array=0
+Aug-27 15:16:00.591 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:process_single` matches labels `process_single` for process with name NFCORE_DARTSEQ:DARTSEQ:MULTIQC
+Aug-27 15:16:00.592 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withName:MULTIQC` matches process NFCORE_DARTSEQ:DARTSEQ:MULTIQC
+Aug-27 15:16:00.593 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Aug-27 15:16:00.593 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Aug-27 15:16:00.594 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'NFCORE_DARTSEQ:DARTSEQ:MULTIQC': maxForks=0; fair=false; array=0
+Aug-27 15:16:00.608 [main] DEBUG nextflow.Session - Config process names validation disabled as requested
+Aug-27 15:16:00.612 [main] DEBUG nextflow.Session - Igniting dataflow network (17)
+Aug-27 15:16:00.613 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > NFCORE_DARTSEQ:DARTSEQ:FASTQC
+Aug-27 15:16:00.613 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > NFCORE_DARTSEQ:DARTSEQ:FASTP
+Aug-27 15:16:00.618 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > NFCORE_DARTSEQ:DARTSEQ:MULTIQC
+Aug-27 15:16:00.619 [main] DEBUG nextflow.script.ScriptRunner - Parsed script files:
+  _nf_script_5f79abe1de1c599a: /work_ikmb/sukmb662/dartseq/modules/local/bullseye/acfilter/main.nf
+  _nf_script_c5d2293ebfbc4bcd: /work_ikmb/sukmb662/dartseq/modules/local/bullseye/gathersites/main.nf
+  _nf_script_1f5da7e0e2930c5a: /work_ikmb/sukmb662/dartseq/modules/nf-core/samtools/index/main.nf
+  _nf_script_9c76806d6e49a411: /work_ikmb/sukmb662/dartseq/modules/local/bullseye/quantifysites/main.nf
+  _nf_script_b0893b9ae001cfe0: /work_ikmb/sukmb662/dartseq/subworkflows/nf-core/utils_nfschema_plugin/main.nf
+  _nf_script_ab1d254a59f0805d: /work_ikmb/sukmb662/dartseq/modules/nf-core/fastp/main.nf
+  _nf_script_3973ce41a1ce64ac: /work_ikmb/sukmb662/dartseq/modules/nf-core/fastqc/main.nf
+  _nf_script_6ec886bb96d696cd: /work_ikmb/sukmb662/dartseq/modules/nf-core/hisat2/build/main.nf
+  _nf_script_75fd5b378104a2ea: /work_ikmb/sukmb662/dartseq/modules/local/bullseye/rglm/main.nf
+  _nf_script_c0d8019072c2de56: /work_ikmb/sukmb662/dartseq/modules/nf-core/star/align/main.nf
+  _nf_script_c5883fe3aa1e4485: /work_ikmb/sukmb662/dartseq/modules/local/bullseye/gtf2genepred/main.nf
+  _nf_script_f5600ff86a11a900: /work_ikmb/sukmb662/dartseq/modules/nf-core/hisat2/align/main.nf
+  _nf_script_61b654aa0ee7c39e: /work_ikmb/sukmb662/dartseq/subworkflows/nf-core/utils_nfcore_pipeline/main.nf
+  _nf_script_dd53006415757020: /work_ikmb/sukmb662/dartseq/subworkflows/nf-core/utils_nextflow_pipeline/main.nf
+  _nf_script_0703be078ecd892b: /work_ikmb/sukmb662/dartseq/modules/nf-core/star/genomegenerate/main.nf
+  _nf_script_94f433651008a4bb: /work_ikmb/sukmb662/dartseq/subworkflows/local/utils_nfcore_dartseq_pipeline/main.nf
+  _nf_script_f069d139bcd17e79: /work_ikmb/sukmb662/dartseq/modules/nf-core/hisat2/extractsplicesites/main.nf
+  _nf_script_1c9da50ef20f36c9: /work_ikmb/sukmb662/dartseq/modules/local/bullseye/summarizesites/main.nf
+  _nf_script_b378928343a88e8e: /work_ikmb/sukmb662/dartseq/modules/local/bullseye/parsebam/main.nf
+  _nf_script_3c2f9295076a1a48: /work_ikmb/sukmb662/dartseq/modules/nf-core/samtools/sort/main.nf
+  _nf_script_fab459c57d43bd2e: /work_ikmb/sukmb662/dartseq/modules/local/bullseye/racfilter/main.nf
+  _nf_script_c5bfbf4e1eac3143: /work_ikmb/sukmb662/dartseq/workflows/dartseq.nf
+  _nf_script_19c2a48a0c141a6e: /work_ikmb/sukmb662/dartseq/modules/local/bullseye/findeditsites/main.nf
+  _nf_script_3b48c01735e5c521: /work_ikmb/sukmb662/dartseq/modules/nf-core/trimgalore/main.nf
+  _nf_script_b0f23200830fc8a4: /work_ikmb/sukmb662/dartseq/modules/nf-core/multiqc/main.nf
+  Main: /work_ikmb/sukmb662/dartseq/main.nf
+Aug-27 15:16:00.619 [main] DEBUG nextflow.script.ScriptRunner - > Awaiting termination 
+Aug-27 15:16:00.619 [main] DEBUG nextflow.Session - Session await
+Aug-27 15:16:00.698 [Actor Thread 59] DEBUG nextflow.sort.BigSort - Sort completed -- entries: 1; slices: 1; internal sort time: 0.001 s; external sort time: 0.009 s; total time: 0.01 s
+Aug-27 15:16:00.698 [Actor Thread 60] DEBUG nextflow.sort.BigSort - Sort completed -- entries: 1; slices: 1; internal sort time: 0.001 s; external sort time: 0.009 s; total time: 0.01 s
+Aug-27 15:16:00.704 [Actor Thread 59] DEBUG nextflow.file.FileCollector - Saved collect-files list to: /work_ikmb/sukmb662/dartseq/.nf-test/tests/5054581062ca7b963668a12ef5309ee5/work/collect-file/9cd978ce7e18e75edb48e605cc496861
+Aug-27 15:16:00.704 [Actor Thread 60] DEBUG nextflow.file.FileCollector - Saved collect-files list to: /work_ikmb/sukmb662/dartseq/.nf-test/tests/5054581062ca7b963668a12ef5309ee5/work/collect-file/ad302574ed09dcd689ca90213e644e0f
+Aug-27 15:16:00.711 [Actor Thread 59] DEBUG nextflow.file.FileCollector - Deleting file collector temp dir: /tmp/nxf-10641043124739149259
+Aug-27 15:16:00.711 [Actor Thread 60] DEBUG nextflow.file.FileCollector - Deleting file collector temp dir: /tmp/nxf-2456947233906333776
+Aug-27 15:16:01.343 [FileTransfer-1] DEBUG nextflow.file.FilePorter - Copying foreign file https://raw.githubusercontent.com/nf-core/test-datasets/dartseq/data/dartseq/fastq/A04_R1.fastq.gz to work dir: /work_ikmb/sukmb662/dartseq/.nf-test/tests/5054581062ca7b963668a12ef5309ee5/work/stage-7d26b153-4f23-478e-8925-40c28d560f66/79/9c0cc7e78c63e85e7d6f03355f302e/A04_R1.fastq.gz
+Aug-27 15:16:01.343 [FileTransfer-2] DEBUG nextflow.file.FilePorter - Copying foreign file https://raw.githubusercontent.com/nf-core/test-datasets/dartseq/data/dartseq/fastq/A04_R2.fastq.gz to work dir: /work_ikmb/sukmb662/dartseq/.nf-test/tests/5054581062ca7b963668a12ef5309ee5/work/stage-7d26b153-4f23-478e-8925-40c28d560f66/98/04829b899256ad8ec7d6faffb6fb1e/A04_R2.fastq.gz
+Aug-27 15:16:01.344 [FileTransfer-3] DEBUG nextflow.file.FilePorter - Copying foreign file https://raw.githubusercontent.com/nf-core/test-datasets/dartseq/data/dartseq/fastq/C03_R1.fastq.gz to work dir: /work_ikmb/sukmb662/dartseq/.nf-test/tests/5054581062ca7b963668a12ef5309ee5/work/stage-7d26b153-4f23-478e-8925-40c28d560f66/84/f3c407e806c895ae251aa2f4d667fa/C03_R1.fastq.gz
+Aug-27 15:16:01.344 [FileTransfer-6] DEBUG nextflow.file.FilePorter - Copying foreign file https://raw.githubusercontent.com/nf-core/test-datasets/dartseq/data/dartseq/fastq/A03_R2.fastq.gz to work dir: /work_ikmb/sukmb662/dartseq/.nf-test/tests/5054581062ca7b963668a12ef5309ee5/work/stage-7d26b153-4f23-478e-8925-40c28d560f66/2f/169c3ab033266860befbfce22585d4/A03_R2.fastq.gz
+Aug-27 15:16:01.344 [FileTransfer-5] DEBUG nextflow.file.FilePorter - Copying foreign file https://raw.githubusercontent.com/nf-core/test-datasets/dartseq/data/dartseq/fastq/A03_R1.fastq.gz to work dir: /work_ikmb/sukmb662/dartseq/.nf-test/tests/5054581062ca7b963668a12ef5309ee5/work/stage-7d26b153-4f23-478e-8925-40c28d560f66/59/0f0421c031b2359422c35b912bb38c/A03_R1.fastq.gz
+Aug-27 15:16:01.344 [FileTransfer-4] DEBUG nextflow.file.FilePorter - Copying foreign file https://raw.githubusercontent.com/nf-core/test-datasets/dartseq/data/dartseq/fastq/C03_R2.fastq.gz to work dir: /work_ikmb/sukmb662/dartseq/.nf-test/tests/5054581062ca7b963668a12ef5309ee5/work/stage-7d26b153-4f23-478e-8925-40c28d560f66/f3/4496023b1861cbb314ed4a42dfb00d/C03_R2.fastq.gz
+Aug-27 15:16:01.345 [FileTransfer-7] DEBUG nextflow.file.FilePorter - Copying foreign file https://raw.githubusercontent.com/nf-core/test-datasets/dartseq/data/dartseq/fastq/E01_R1.fastq.gz to work dir: /work_ikmb/sukmb662/dartseq/.nf-test/tests/5054581062ca7b963668a12ef5309ee5/work/stage-7d26b153-4f23-478e-8925-40c28d560f66/25/4ebf51763a197c0cdd897d0c15c1c2/E01_R1.fastq.gz
+Aug-27 15:16:01.347 [FileTransfer-8] DEBUG nextflow.file.FilePorter - Copying foreign file https://raw.githubusercontent.com/nf-core/test-datasets/dartseq/data/dartseq/fastq/E01_R2.fastq.gz to work dir: /work_ikmb/sukmb662/dartseq/.nf-test/tests/5054581062ca7b963668a12ef5309ee5/work/stage-7d26b153-4f23-478e-8925-40c28d560f66/a4/ac776b5873e191924ff28cb0146106/E01_R2.fastq.gz
+Aug-27 15:16:01.514 [Actor Thread 60] DEBUG nextflow.container.SingularityCache - Singularity found local store for image=https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/55/556474e164daf5a5e218cd5d497681dcba0645047cf24698f88e3e078eacbd09/data; path=/work_ikmb/sukmb662/test_dartseq/cache/singularity/community-cr-prod.seqera.io-docker-registry-v2-blobs-sha256-55-556474e164daf5a5e218cd5d497681dcba0645047cf24698f88e3e078eacbd09-data.img
+Aug-27 15:16:01.514 [Actor Thread 59] DEBUG nextflow.container.SingularityCache - Singularity found local store for image=https://depot.galaxyproject.org/singularity/fastqc:0.12.1--hdfd78af_0; path=/work_ikmb/sukmb662/test_dartseq/cache/singularity/depot.galaxyproject.org-singularity-fastqc-0.12.1--hdfd78af_0.img
+Aug-27 15:16:01.672 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-27 15:16:01.673 [Task submitter] INFO  nextflow.Session - [01/57c4c0] Submitted process > NFCORE_DARTSEQ:DARTSEQ:FASTQC (C03)
+Aug-27 15:16:01.684 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-27 15:16:01.685 [Task submitter] INFO  nextflow.Session - [42/fbd279] Submitted process > NFCORE_DARTSEQ:DARTSEQ:FASTQC (A04)
+Aug-27 15:16:01.691 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-27 15:16:01.692 [Task submitter] INFO  nextflow.Session - [94/79ade3] Submitted process > NFCORE_DARTSEQ:DARTSEQ:FASTQC (A03)
+Aug-27 15:16:01.701 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-27 15:16:01.702 [Task submitter] INFO  nextflow.Session - [94/3c6641] Submitted process > NFCORE_DARTSEQ:DARTSEQ:FASTQC (E01)
+Aug-27 15:16:01.711 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-27 15:16:01.711 [Task submitter] INFO  nextflow.Session - [b8/a77baa] Submitted process > NFCORE_DARTSEQ:DARTSEQ:FASTP (A04)
+Aug-27 15:16:01.719 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-27 15:16:01.720 [Task submitter] INFO  nextflow.Session - [5a/9ffa8e] Submitted process > NFCORE_DARTSEQ:DARTSEQ:FASTP (C03)
+Aug-27 15:16:01.727 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-27 15:16:01.728 [Task submitter] INFO  nextflow.Session - [09/82296b] Submitted process > NFCORE_DARTSEQ:DARTSEQ:FASTP (A03)
+Aug-27 15:16:01.737 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-27 15:16:01.738 [Task submitter] INFO  nextflow.Session - [56/345bba] Submitted process > NFCORE_DARTSEQ:DARTSEQ:FASTP (E01)
+Aug-27 15:16:11.516 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 1; name: NFCORE_DARTSEQ:DARTSEQ:FASTP (A03); status: COMPLETED; exit: 0; error: -; workDir: /work_ikmb/sukmb662/dartseq/.nf-test/tests/5054581062ca7b963668a12ef5309ee5/work/09/82296b43401f67470bf38cf2246f9d]
+Aug-27 15:16:11.517 [Task monitor] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'TaskFinalizer' minSize=10; maxSize=192; workQueue=LinkedBlockingQueue[-1]; allowCoreThreadTimeout=false
+Aug-27 15:16:11.615 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5; name: NFCORE_DARTSEQ:DARTSEQ:FASTP (A04); status: COMPLETED; exit: 0; error: -; workDir: /work_ikmb/sukmb662/dartseq/.nf-test/tests/5054581062ca7b963668a12ef5309ee5/work/b8/a77baa1b9d712e21302af1926cc3a2]
+Aug-27 15:16:11.616 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 3; name: NFCORE_DARTSEQ:DARTSEQ:FASTP (C03); status: COMPLETED; exit: 0; error: -; workDir: /work_ikmb/sukmb662/dartseq/.nf-test/tests/5054581062ca7b963668a12ef5309ee5/work/5a/9ffa8ea2ee7d7dfdebbc3e68e57b47]
+Aug-27 15:16:11.637 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 7; name: NFCORE_DARTSEQ:DARTSEQ:FASTP (E01); status: COMPLETED; exit: 0; error: -; workDir: /work_ikmb/sukmb662/dartseq/.nf-test/tests/5054581062ca7b963668a12ef5309ee5/work/56/345bba272b834d3e52b3458d54c484]
+Aug-27 15:16:11.655 [TaskFinalizer-1] DEBUG nextflow.processor.TaskProcessor - Process NFCORE_DARTSEQ:DARTSEQ:FASTP > Skipping output binding because one or more optional files are missing: fileoutparam<4:1>
+Aug-27 15:16:11.655 [TaskFinalizer-1] DEBUG nextflow.processor.TaskProcessor - Process NFCORE_DARTSEQ:DARTSEQ:FASTP > Skipping output binding because one or more optional files are missing: fileoutparam<5:1>
+Aug-27 15:16:11.665 [TaskFinalizer-2] DEBUG nextflow.processor.TaskProcessor - Process NFCORE_DARTSEQ:DARTSEQ:FASTP > Skipping output binding because one or more optional files are missing: fileoutparam<4:1>
+Aug-27 15:16:11.665 [TaskFinalizer-2] DEBUG nextflow.processor.TaskProcessor - Process NFCORE_DARTSEQ:DARTSEQ:FASTP > Skipping output binding because one or more optional files are missing: fileoutparam<5:1>
+Aug-27 15:16:11.666 [TaskFinalizer-3] DEBUG nextflow.processor.TaskProcessor - Process NFCORE_DARTSEQ:DARTSEQ:FASTP > Skipping output binding because one or more optional files are missing: fileoutparam<4:1>
+Aug-27 15:16:11.666 [TaskFinalizer-1] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'PublishDir' minSize=10; maxSize=192; workQueue=LinkedBlockingQueue[-1]; allowCoreThreadTimeout=false
+Aug-27 15:16:11.666 [TaskFinalizer-3] DEBUG nextflow.processor.TaskProcessor - Process NFCORE_DARTSEQ:DARTSEQ:FASTP > Skipping output binding because one or more optional files are missing: fileoutparam<5:1>
+Aug-27 15:16:11.674 [TaskFinalizer-4] DEBUG nextflow.processor.TaskProcessor - Process NFCORE_DARTSEQ:DARTSEQ:FASTP > Skipping output binding because one or more optional files are missing: fileoutparam<4:1>
+Aug-27 15:16:11.674 [TaskFinalizer-4] DEBUG nextflow.processor.TaskProcessor - Process NFCORE_DARTSEQ:DARTSEQ:FASTP > Skipping output binding because one or more optional files are missing: fileoutparam<5:1>
+Aug-27 15:16:45.354 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 4; name: NFCORE_DARTSEQ:DARTSEQ:FASTQC (C03); status: COMPLETED; exit: 0; error: -; workDir: /work_ikmb/sukmb662/dartseq/.nf-test/tests/5054581062ca7b963668a12ef5309ee5/work/01/57c4c0892cb2205b48bf15b6ade5d3]
+Aug-27 15:16:45.394 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 2; name: NFCORE_DARTSEQ:DARTSEQ:FASTQC (A03); status: COMPLETED; exit: 0; error: -; workDir: /work_ikmb/sukmb662/dartseq/.nf-test/tests/5054581062ca7b963668a12ef5309ee5/work/94/79ade3a2ac15a02919275e365fb55c]
+Aug-27 15:16:45.397 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 6; name: NFCORE_DARTSEQ:DARTSEQ:FASTQC (A04); status: COMPLETED; exit: 0; error: -; workDir: /work_ikmb/sukmb662/dartseq/.nf-test/tests/5054581062ca7b963668a12ef5309ee5/work/42/fbd279925f66e7d09287edbcd34d7c]
+Aug-27 15:16:45.397 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 8; name: NFCORE_DARTSEQ:DARTSEQ:FASTQC (E01); status: COMPLETED; exit: 0; error: -; workDir: /work_ikmb/sukmb662/dartseq/.nf-test/tests/5054581062ca7b963668a12ef5309ee5/work/94/3c6641c0d52f1f47606f8c46b151b3]
+Aug-27 15:16:45.411 [Actor Thread 63] DEBUG nextflow.sort.BigSort - Sort completed -- entries: 3; slices: 1; internal sort time: 0.001 s; external sort time: 0.001 s; total time: 0.002 s
+Aug-27 15:16:45.417 [Actor Thread 63] DEBUG nextflow.file.FileCollector - Saved collect-files list to: /work_ikmb/sukmb662/dartseq/.nf-test/tests/5054581062ca7b963668a12ef5309ee5/work/collect-file/8e4254205d20e3e9db199cc295eb51c6
+Aug-27 15:16:45.419 [Actor Thread 63] DEBUG nextflow.file.FileCollector - Deleting file collector temp dir: /tmp/nxf-5580202925530600324
+Aug-27 15:16:45.610 [Actor Thread 52] DEBUG nextflow.container.SingularityCache - Singularity found local store for image=https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/8c/8c6c120d559d7ee04c7442b61ad7cf5a9e8970be5feefb37d68eeaa60c1034eb/data; path=/work_ikmb/sukmb662/test_dartseq/cache/singularity/community-cr-prod.seqera.io-docker-registry-v2-blobs-sha256-8c-8c6c120d559d7ee04c7442b61ad7cf5a9e8970be5feefb37d68eeaa60c1034eb-data.img
+Aug-27 15:16:45.642 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-27 15:16:45.642 [Task submitter] INFO  nextflow.Session - [cf/da4dea] Submitted process > NFCORE_DARTSEQ:DARTSEQ:MULTIQC
+Aug-27 15:16:57.798 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 9; name: NFCORE_DARTSEQ:DARTSEQ:MULTIQC; status: COMPLETED; exit: 0; error: -; workDir: /work_ikmb/sukmb662/dartseq/.nf-test/tests/5054581062ca7b963668a12ef5309ee5/work/cf/da4dea732debb88c36bdc1df3fc1ec]
+Aug-27 15:16:57.845 [main] DEBUG nextflow.Session - Session await > all processes finished
+Aug-27 15:16:57.898 [Task monitor] DEBUG n.processor.TaskPollingMonitor - <<< barrier arrives (monitor: local) - terminating tasks monitor poll loop
+Aug-27 15:16:57.899 [main] DEBUG nextflow.Session - Session await > all barriers passed
+Aug-27 15:16:57.906 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'TaskFinalizer' shutdown completed (hard=false)
+Aug-27 15:16:58.142 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'PublishDir' shutdown completed (hard=false)
+Aug-27 15:16:58.149 [main] INFO  nextflow.Nextflow - -[0;35m[nf-core/dartseq][0;32m Pipeline completed successfully[0m-
+Aug-27 15:16:58.154 [main] DEBUG n.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=9; failedCount=0; ignoredCount=0; cachedCount=0; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=0; succeedDuration=12m 8s; failedDuration=0ms; cachedDuration=0ms;loadCpus=0; loadMemory=0; peakRunning=8; peakCpus=32; peakMemory=120 GB; ]
+Aug-27 15:16:58.173 [main] DEBUG nextflow.trace.ReportObserver - Workflow completed -- rendering execution report
+Aug-27 15:16:58.410 [main] DEBUG nextflow.trace.TimelineObserver - Workflow completed -- rendering execution timeline
+Aug-27 15:16:58.454 [main] DEBUG nextflow.trace.TraceFileObserver - Workflow completed -- saving trace file
+Aug-27 15:16:58.462 [main] DEBUG nextflow.cache.CacheDB - Closing CacheDB done
+Aug-27 15:16:58.473 [main] INFO  org.pf4j.AbstractPluginManager - Stop plugin 'nf-amazon@3.9.2'
+Aug-27 15:16:58.473 [main] DEBUG nextflow.plugin.BasePlugin - Plugin stopped nf-amazon
+Aug-27 15:16:58.473 [main] INFO  org.pf4j.AbstractPluginManager - Stop plugin 'nf-schema@2.5.1'
+Aug-27 15:16:58.473 [main] DEBUG nextflow.plugin.BasePlugin - Plugin stopped nf-schema
+Aug-27 15:16:58.474 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'FileTransfer' shutdown completed (hard=false)
+Aug-27 15:16:58.475 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye

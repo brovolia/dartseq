@@ -1,0 +1,69 @@
+ERROR ~ Error executing process > 'NFCORE_DARTSEQ:DARTSEQ:RUSTQC (E01)'
+
+Caused by:
+  Process `NFCORE_DARTSEQ:DARTSEQ:RUSTQC (E01)` terminated with an error exit status (1)
+
+
+Command executed:
+
+  rustqc rna \
+      E01.sorted.bam \
+      --gtf genes.gtf \
+      --paired \
+      --threads 4 \
+      --outdir E01 \
+      --sample-name E01 \
+      --skip-dup-check
+
+Command exit status:
+  1
+
+Command output:
+  (empty)
+
+Command error:
+  
+    RustQC v0.2.1 (c868466, built 2026-04-09T12:09:10Z)
+    Binary: x86-64-v3 (AVX2) | CPU: AVX2 SSE4.2 POPCNT detected
+  
+    Input:       E01.sorted.bam
+    Annotation:  genes.gtf
+    Stranded:    unstranded
+    Paired:      true
+    CPU Threads: 4
+    Output dir:  ./E01
+    ⚠ Biotype attributes 'gene_biotype' and 'gene_type' not found in GTF, skipping biotype outputs (use --biotype-attribute to specify)
+  
+      Parsing GTF annotation...
+  [WARN  rustqc::gtf] No genes extracted from GTF file 'genes.gtf'. Check that the file is in GTF (not GFF3) format and contains exon features with gene_id attributes.
+  
+    Processing E01.sorted.bam
+    ✗ error: Failed to process E01.sorted.bam: Chromosome name mismatch: no reads could be assigned to any gene.
+  
+  Alignment chromosomes (first 5): chr22_test
+  GTF chromosomes (first 5): 
+  
+  The alignment and GTF files appear to use different chromosome naming conventions.
+  To fix this, create a YAML config file with a chromosome_mapping section and pass it via --config:
+  
+  Example config.yaml:
+  
+  chromosome_mapping:
+  
+      ✓ Citations             E01/CITATIONS.md
+    ✓ RustQC run finished finished in 0.0s
+  
+  Error: 1 file(s) failed to process
+
+Work dir:
+  /work_ikmb/sukmb662/dartseq/.nf-test/tests/af272e53ac8400648c3adae6ea775175/work/b4/a192ed7aa024c24773445b901e9da1
+
+Container:
+  /work_ikmb/sukmb662/test_dartseq/cache/singularity/community-cr-prod.seqera.io-docker-registry-v2-blobs-sha256-2a-2a8a0514855c54307399fd0f664c2685e76c8cc07631e767c1e37c575b18d59f-data.img
+
+Tip: you can try to figure out what's wrong by changing to the process work dir and showing the script file named `.command.sh`
+
+ -- Check '/work_ikmb/sukmb662/dartseq/.nf-test/tests/af272e53ac8400648c3adae6ea775175/meta/nextflow.log' file for details
+ERROR ~ Pipeline failed. Please refer to troubleshooting docs: https://nf-co.re/docs/usage/troubleshooting
+
+ -- Check '/work_ikmb/sukmb662/dartseq/.nf-test/tests/af272e53ac8400648c3adae6ea775175/meta/nextflow.log' file for details

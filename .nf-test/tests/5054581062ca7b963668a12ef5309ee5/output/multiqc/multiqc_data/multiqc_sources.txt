@@ -1,0 +1,13 @@
+Module	Section	Sample Name	Source
+fastp	all_sections	A03	/work_ikmb/sukmb662/dartseq/.nf-test/tests/5054581062ca7b963668a12ef5309ee5/work/cf/da4dea732debb88c36bdc1df3fc1ec/7/A03.fastp.json
+fastp	all_sections	A04	/work_ikmb/sukmb662/dartseq/.nf-test/tests/5054581062ca7b963668a12ef5309ee5/work/cf/da4dea732debb88c36bdc1df3fc1ec/8/A04.fastp.json
+fastp	all_sections	C03	/work_ikmb/sukmb662/dartseq/.nf-test/tests/5054581062ca7b963668a12ef5309ee5/work/cf/da4dea732debb88c36bdc1df3fc1ec/9/C03.fastp.json
+fastp	all_sections	E01	/work_ikmb/sukmb662/dartseq/.nf-test/tests/5054581062ca7b963668a12ef5309ee5/work/cf/da4dea732debb88c36bdc1df3fc1ec/10/E01.fastp.json
+FastQC	all_sections	A03_1	/work_ikmb/sukmb662/dartseq/.nf-test/tests/5054581062ca7b963668a12ef5309ee5/work/cf/da4dea732debb88c36bdc1df3fc1ec/18/A03_1_fastqc.zip
+FastQC	all_sections	A03_2	/work_ikmb/sukmb662/dartseq/.nf-test/tests/5054581062ca7b963668a12ef5309ee5/work/cf/da4dea732debb88c36bdc1df3fc1ec/19/A03_2_fastqc.zip
+FastQC	all_sections	A04_1	/work_ikmb/sukmb662/dartseq/.nf-test/tests/5054581062ca7b963668a12ef5309ee5/work/cf/da4dea732debb88c36bdc1df3fc1ec/22/A04_1_fastqc.zip
+FastQC	all_sections	A04_2	/work_ikmb/sukmb662/dartseq/.nf-test/tests/5054581062ca7b963668a12ef5309ee5/work/cf/da4dea732debb88c36bdc1df3fc1ec/23/A04_2_fastqc.zip
+FastQC	all_sections	C03_1	/work_ikmb/sukmb662/dartseq/.nf-test/tests/5054581062ca7b963668a12ef5309ee5/work/cf/da4dea732debb88c36bdc1df3fc1ec/16/C03_1_fastqc.zip
+FastQC	all_sections	C03_2	/work_ikmb/sukmb662/dartseq/.nf-test/tests/5054581062ca7b963668a12ef5309ee5/work/cf/da4dea732debb88c36bdc1df3fc1ec/17/C03_2_fastqc.zip
+FastQC	all_sections	E01_1	/work_ikmb/sukmb662/dartseq/.nf-test/tests/5054581062ca7b963668a12ef5309ee5/work/cf/da4dea732debb88c36bdc1df3fc1ec/20/E01_1_fastqc.zip
+FastQC	all_sections	E01_2	/work_ikmb/sukmb662/dartseq/.nf-test/tests/5054581062ca7b963668a12ef5309ee5/work/cf/da4dea732debb88c36bdc1df3fc1ec/21/E01_2_fastqc.zip

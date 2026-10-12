@@ -1,7 +1,7 @@
 {
-    "HISAT2 alignment with RustQC": {
+    "HISAT2 alignment": {
         "content": [
-            27,
+            23,
             {
                 "FASTP": {
                     "fastp": "1.1.0"
@@ -18,9 +18,6 @@
                 },
                 "HISAT2_EXTRACTSPLICESITES": {
                     "hisat2": "2.2.1"
-                },
-                "RUSTQC": {
-                    "rustqc": "mock"
                 },
                 "SAMTOOLS_INDEX": {
                     "samtools": "1.23.1"
@@ -231,20 +228,7 @@
                 "multiqc/multiqc_plots/svg/fastqc_top_overrepresented_sequences_table.svg",
                 "multiqc/multiqc_report.html",
                 "pipeline_info",
-                "pipeline_info/nf_core_dartseq_software_mqc_versions.yml",
-                "rustqc",
-                "rustqc/A03",
-                "rustqc/A03/A03.rustqc.json",
-                "rustqc/A03/A03.rustqc.tsv",
-                "rustqc/A04",
-                "rustqc/A04/A04.rustqc.json",
-                "rustqc/A04/A04.rustqc.tsv",
-                "rustqc/C03",
-                "rustqc/C03/C03.rustqc.json",
-                "rustqc/C03/C03.rustqc.tsv",
-                "rustqc/E01",
-                "rustqc/E01/E01.rustqc.json",
-                "rustqc/E01/E01.rustqc.tsv"
+                "pipeline_info/nf_core_dartseq_software_mqc_versions.yml"
             ],
             [
                 "A03_R1.fastp.fastq.gz:md5,82e59ca4d67c58943abc1a4b8438d43f",
@@ -293,21 +277,13 @@
                 "multiqc_citations.txt:md5,3b51827bd47588e5bf9cf03d4f41d817",
                 "multiqc_fastp.txt:md5,b3a22a6af78e4823862463843a9b50bb",
                 "multiqc_fastqc.txt:md5,59bd321a789525442fa7f883dc77476d",
-                "multiqc_general_stats.txt:md5,c238c62dad91e89ba9c68a8752b5c28a",
-                "A03.rustqc.json:md5,1033803d8e22c64af440ffb41e4f699d",
-                "A03.rustqc.tsv:md5,9b257de5f0b77ce189bd57bab3c76b8b",
-                "A04.rustqc.json:md5,9398955ed1590673d649d4add7b04080",
-                "A04.rustqc.tsv:md5,9b257de5f0b77ce189bd57bab3c76b8b",
-                "C03.rustqc.json:md5,cac8cdd376ca68240842014870394665",
-                "C03.rustqc.tsv:md5,9b257de5f0b77ce189bd57bab3c76b8b",
-                "E01.rustqc.json:md5,b88e8a5fedebde1887e4c154fe8d9118",
-                "E01.rustqc.tsv:md5,9b257de5f0b77ce189bd57bab3c76b8b"
+                "multiqc_general_stats.txt:md5,c238c62dad91e89ba9c68a8752b5c28a"
             ]
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.0"
+            "nextflow": "26.04.4"
         },
-        "timestamp": "2026-05-20T16:11:16.976065068"
+        "timestamp": "2026-08-20T10:14:42.607071502"
     }
 }

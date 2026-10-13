@@ -1,9 +1,0 @@
-Sample	fastp	fastqc	hisat2	samtools	nf-core/dartseq	Nextflow
-FastQC		0.12.1				
-HISAT2_ALIGN			2.2.2	1.23		
-HISAT2_BUILD			2.2.2			
-HISAT2_EXTRACTSPLICESITES			2.2.1			
-SAMTOOLS_INDEX				1.23.1		
-SAMTOOLS_SORT				1.23.1		
-Workflow					v1.0.0dev	26.04.4
-fastp	1.1.0					

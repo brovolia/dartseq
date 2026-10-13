@@ -9,6 +9,9 @@ lint:
   files_unchanged:
     - .github/workflows/branch.yml
     - .github/workflows/linting.yml
+  nextflow_config:
+    - config_defaults:
+        - params.bullseye_functions_r_file
 template:
   org: nf-core
   name: dartseq

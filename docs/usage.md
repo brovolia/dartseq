@@ -170,8 +170,8 @@ After site gathering (`--skip_bullseye_gather_sites false`; skipped by default),
 
 Provide sample metadata via `--bullseye_glm_observations`, a TSV/CSV file with one row per sample and at least:
 
-| Column   | Required | Description                                                                 |
-| -------- | -------- | ---------------------------------------------------------------------------- |
+| Column   | Required | Description                                                                   |
+| -------- | -------- | ----------------------------------------------------------------------------- |
 | `sample` | Yes      | Must exactly match a sample column in the gathered coverage/mutation matrices |
 
 Add any further columns needed by your `--bullseye_glm_design` formula (e.g. a `group` column for `~group`). The sample names in the gathered matrices reflect whatever filtering ran immediately before gathering (e.g. `<sample>.bullseye.RAC` if RAC filtering was applied, `<sample>.bullseye.all_sites` if both RAC and AC filtering were skipped) - check the header of `bullseye/all_bullseye_sites/*.bullseye.coverage.txt` to get the exact names to use.

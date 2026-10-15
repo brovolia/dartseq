@@ -2,7 +2,9 @@
 %%metro logo: docs/images/dartseq_logo.png
 %%metro style: light
 %%metro line_order: span
-%%metro file: fastq_in | FASTQ
+%% a_fastq_in: nf-metro starts animations at the alphabetically first root station,
+%% so this ID must sort before bullseye_*/hisat2_*/star_* (balls start at the FASTQ input)
+%%metro file: a_fastq_in | FASTQ
 %%metro file: report_out | HTML
 %%metro file: glm_out | TSV
 %%metro line: star | Aligner: STAR | #2db572
@@ -13,14 +15,14 @@
 graph LR
     subgraph input_qc [Input & QC]
         %%metro exit: right | star, hisat2
-        fastq_in[ ]
+        a_fastq_in[ ]
         fastqc([FastQC])
         fastp([fastp])
         trimgalore([Trim Galore!])
 
-        fastq_in -->|star,hisat2| fastqc
-        fastq_in -->|star,hisat2| fastp
-        fastq_in -->|star,hisat2| trimgalore
+        a_fastq_in -->|star,hisat2| fastqc
+        a_fastq_in -->|star,hisat2| fastp
+        a_fastq_in -->|star,hisat2| trimgalore
     end
 
     subgraph alignment [Alignment]

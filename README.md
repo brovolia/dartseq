@@ -26,7 +26,7 @@
 It accepts single-end or paired-end FASTQ input, performs read QC and alignment, and can run Bullseye-based
 post-processing. Standard outputs include per-sample QC reports, alignments, MultiQC summaries, and optional edited-site tables.
 
-![nf-core/dartseq workflow overview](docs/images/dartseq_metromap.svg)
+<img src="docs/images/nf-core-dartseq_metro_map_animated.svg" alt="nf-core/dartseq metro map" width="100%">
 
 Workflow overview:
 

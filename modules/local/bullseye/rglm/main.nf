@@ -32,6 +32,14 @@ EOF
         """
     } else {
         """
+        # aod::betabin's matrix ops (vcov/qr.solve) run through BLAS/LAPACK; a
+        # multi-threaded BLAS is not bit-reproducible across thread counts, which
+        # otherwise makes the fitted p-values/log2FC flip in their last few digits
+        # between runs on the same input.
+        export OPENBLAS_NUM_THREADS=1
+        export OMP_NUM_THREADS=1
+        export MKL_NUM_THREADS=1
+
         cat > run_bullseye_glm.R << 'EOF'
         suppressPackageStartupMessages({
             library(data.table)

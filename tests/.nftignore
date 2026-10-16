@@ -14,6 +14,7 @@ fastp/*.fastp.html
 fastp/*.fastp.log
 fastp/*.fastp.json
 star/*/*.Log.*
+star/star/Log.out
 hisat2/*/*.log
 hisat2/*/*.summary.txt
 hisat2/*/*.bam

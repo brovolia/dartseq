@@ -12,6 +12,11 @@ nextflow_pipeline {
         when {
             params {
                 outdir = "$outputDir"
+                // nf-test's global default profile "test" (nf-test.config) is applied
+                // alongside this suite's "test_bullseye_glm_matrix" profile, and
+                // conf/test.config sets --input. Null it out so the pipeline-mode
+                // validation ("not both") doesn't reject this matrix-mode run.
+                input = null
                 // URLs spelled out: params.pipelines_testdata_base_path is not yet
                 // resolved when nf-test evaluates this block.
                 bullseye_glm_coverage     = 'https://raw.githubusercontent.com/nf-core/test-datasets/dartseq/data/dartseq/glm/coverage.txt'

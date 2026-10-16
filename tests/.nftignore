@@ -21,6 +21,7 @@ hisat2/*/*.bam
 hisat2/*/*.bam.bai
 star/*/*.bam
 star/*/*.bam.bai
+glm_matrix.bullseye.glm.tsv
 pipeline_info/*.{html,json,txt,yml}
 **/*.log
 **/*versions.yml

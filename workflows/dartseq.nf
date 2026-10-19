@@ -389,7 +389,13 @@ workflow DARTSEQ {
             ch_bullseye_gather_input = ch_bullseye_sites_for_post
                 .map { _meta, bed -> [ [ id: 'all_bullseye_sites' ], bed ] }
                 .groupTuple()
-                .map { meta, beds -> [ meta, beds ] }
+                // groupTuple() collects each sample's bed in whatever order its
+                // upstream task happens to finish - not guaranteed stable across
+                // runs. BULLSEYE_GATHER_SITES numbers samples by this list's order
+                // (stageAs 'beds??/*'), so an unsorted list makes the merged
+                // coverage/mut/score matrices' sample-column order (and thus their
+                // content hash) non-deterministic, even though the data is the same.
+                .map { meta, beds -> [ meta, beds.sort { it.name } ] }
 
             BULLSEYE_GATHER_SITES (
                 ch_bullseye_gather_input,

@@ -28,11 +28,10 @@
                 "pipeline_info/nf_core_dartseq_software_mqc_versions.yml"
             ],
             [
-                "glm_matrix.bullseye.glm.tsv:md5,ce336a00f2d2ebc7dea0fe4d1d0065ef",
                 "multiqc_citations.txt:md5,4c806e63a283ec1b7e78cdae3a923d4f"
             ]
         ],
-        "timestamp": "2026-10-16T14:32:58.212823582",
+        "timestamp": "2026-10-19T13:44:21.071993562",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.4"

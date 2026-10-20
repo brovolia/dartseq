@@ -15,6 +15,7 @@ fastp/*.fastp.log
 fastp/*.fastp.json
 star/*/*.Log.*
 star/star/Log.out
+star/star/genomeParameters.txt
 hisat2/*/*.log
 hisat2/*/*.summary.txt
 hisat2/*/*.bam

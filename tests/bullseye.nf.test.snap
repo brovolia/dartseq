@@ -38,7 +38,7 @@
                     "star": "2.7.11b"
                 },
                 "Workflow": {
-                    "nf-core/dartseq": "v1.0.0dev"
+                    "nf-core/dartseq": "v1.0.0"
                 }
             },
             [
@@ -369,14 +369,13 @@
                 "exonGeTrInfo.tab:md5,971ed4d0fa676eff36964e4e347836c6",
                 "exonInfo.tab:md5,f24cc0f1bdede5943525719daf2cf8ff",
                 "geneInfo.tab:md5,ae751d52662c6104eeb5086bb25f233f",
-                "genomeParameters.txt:md5,9b3810df3deaedbe4ba5f14e254aa53d",
                 "sjdbInfo.txt:md5,c3cfdcd3fe4df5a13ab3841f7b88cc80",
                 "sjdbList.fromGTF.out.tab:md5,aaa44d7bbac0fc35966d34de15d76e4a",
                 "sjdbList.out.tab:md5,af84efbb004f409a2d5f127c5c8a0bc8",
                 "transcriptInfo.tab:md5,0c7fcb2282ec5d5dde590170dc0ccad2"
             ]
         ],
-        "timestamp": "2026-10-15T17:38:52.889694199",
+        "timestamp": "2026-10-20T15:42:41.599797827",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.4"
@@ -421,7 +420,7 @@
                     "star": "2.7.11b"
                 },
                 "Workflow": {
-                    "nf-core/dartseq": "v1.0.0dev"
+                    "nf-core/dartseq": "v1.0.0"
                 }
             },
             [
@@ -752,14 +751,13 @@
                 "exonGeTrInfo.tab:md5,971ed4d0fa676eff36964e4e347836c6",
                 "exonInfo.tab:md5,f24cc0f1bdede5943525719daf2cf8ff",
                 "geneInfo.tab:md5,ae751d52662c6104eeb5086bb25f233f",
-                "genomeParameters.txt:md5,9b3810df3deaedbe4ba5f14e254aa53d",
                 "sjdbInfo.txt:md5,c3cfdcd3fe4df5a13ab3841f7b88cc80",
                 "sjdbList.fromGTF.out.tab:md5,aaa44d7bbac0fc35966d34de15d76e4a",
                 "sjdbList.out.tab:md5,af84efbb004f409a2d5f127c5c8a0bc8",
                 "transcriptInfo.tab:md5,0c7fcb2282ec5d5dde590170dc0ccad2"
             ]
         ],
-        "timestamp": "2026-10-15T17:35:55.301887447",
+        "timestamp": "2026-10-20T15:40:43.083706261",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.4"

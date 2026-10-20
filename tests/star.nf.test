@@ -49,6 +49,18 @@ nextflow_pipeline {
                 }
             }
 
+            // genomeParameters.txt - excluded from the content-hash snapshot (its
+            // first line embeds the STAR binary's absolute path, which differs
+            // between the pinned container and a freshly-built -profile conda env
+            // and can never be aligned by a version pin). Everything past that
+            // first line is a stable key\tvalue parameter echo though, so check
+            // the actual fasta/gtf got wired through correctly instead.
+            def genomeParams = file("$outputDir/star/star/genomeParameters.txt").readLines()
+            def genomeParamChecks = [
+                { -> assert genomeParams.any { it.startsWith('genomeFastaFiles') && it.contains('genome.fa') } : "genomeFastaFiles not wired to genome.fa: ${genomeParams}" },
+                { -> assert genomeParams.any { it.startsWith('sjdbGTFfile') && it.contains('genes.gtf') } : "sjdbGTFfile not wired to genes.gtf: ${genomeParams}" }
+            ]
+
             // stable_name: All files + folders in ${params.outdir}/ with a stable name
             def stable_name = getAllFilesFromDir(params.outdir, relative: true, includeDir: true, ignore: ['pipeline_info/*.{html,json,txt}', 'star/star/Log.out'])
             // stable_path: All files in ${params.outdir}/ with stable content
@@ -83,7 +95,7 @@ nextflow_pipeline {
                         // All files with stable contents
                         stable_path
                     ).match() }
-                ] + starLogChecks + emptyFileChecks as Closure[]
+                ] + starLogChecks + genomeParamChecks + emptyFileChecks as Closure[]
             )
         }
     }

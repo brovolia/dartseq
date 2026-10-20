@@ -2,6 +2,7 @@ process BULLSEYE_PARSEBAM {
     tag "$meta.id"
     label 'process_medium'
 
+    conda "${moduleDir}/environment.yml"
     container 'community.wave.seqera.io/library/bullseye:1.0.0--3e5fd1a65e0e10e9'
 
     input:

@@ -2,6 +2,7 @@ process BULLSEYE_R_GLM {
     tag "$meta.id"
     label 'process_medium'
 
+    conda "${moduleDir}/environment.yml"
     container 'community.wave.seqera.io/library/r-aod_r-base_r-data.table_r-dplyr_pruned:50e53b1dbf9130ec'
 
     input:

@@ -7,7 +7,7 @@
                     "bullseye_r": "local"
                 },
                 "Workflow": {
-                    "nf-core/dartseq": "v1.0.0dev"
+                    "nf-core/dartseq": "v1.0.0"
                 }
             },
             [

@@ -9,7 +9,7 @@
                     "fastqc": "0.12.1"
                 },
                 "Workflow": {
-                    "nf-core/dartseq": "v1.0.0dev"
+                    "nf-core/dartseq": "v1.0.0"
                 }
             },
             [
